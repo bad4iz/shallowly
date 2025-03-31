@@ -1,0 +1,92 @@
+### ОС и редакторы ###
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
+*.sublime-*
+.ntvs*
+*.njsproj
+*.sln
+*.suo
+
+
+### Зависимости ###
+node_modules/
+jspm_packages/
+.pnp*
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnpm-debug.log
+
+### Логи ###
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+
+### Сборка и артефакты ###
+dist/
+coverage/
+.lib/
+.esm/
+.cache/
+*.tsbuildinfo
+*.stats.html
+/build/
+/out/
+/artifacts/
+
+### Тестирование ###
+/junit.xml
+/coverage/
+.nyc_output/
+/jest-cache/
+/__snapshots__/
+/cypress/screenshots/
+/cypress/videos/
+
+### Документация ###
+/docs-built/
+storybook-static/
+*.aux
+*.toc
+
+### Конфигурации ###
+.env*
+!.env.example
+.local-*
+*.local
+.rpt2_cache/
+.rts2_cache*
+
+### Демо и примеры ###
+demo/node_modules/
+demo/dist/
+demo/.env
+example*/node_modules/
+example*/dist/
+
+### Системные файлы ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+### Прочее ###
+/.changelog
+*.patch
+*.diff
+.elastic*
+*.bak
+*.orig
+*.rej

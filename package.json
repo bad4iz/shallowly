@@ -1,0 +1,74 @@
+{
+  "name": "shallowly",
+  "version": "1.0.0",
+  "description": "Shallowly: Modern shallow renderer for React 18+. Enzyme-compatible API, 2x faster, with TypeScript support.",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "npm-run-all build:*",
+    "build:cjs": "babel src --out-dir dist --extensions \".js,.jsx,.ts,.tsx\"",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --out-dir dist/esm --extensions \".js,.jsx,.ts,.tsx\"",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "shallow-render",
+    "unit-testing",
+    "jest",
+    "vitest",
+    "enzyme-alternative",
+    "react-18",
+    "react-19",
+    "fast-tests",
+    "lightweight",
+    "typescript",
+    "hooks",
+    "context-api",
+    "suspense",
+    "component-testing",
+    "frontend-testing",
+    "ci-friendly",
+    "rtl-alternative",
+    "migration-from-enzyme",
+    "shallow-rendering-react",
+    "react-test-utils",
+    "dom-free-testing"
+  ],
+  "author": "@bad4iz",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.27.0",
+    "@types/react": "^19.0.12",
+    "cpy-cli": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "9.23.0",
+    "npm-run-all": "^4.1.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/shallowly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/shallowly/issues"
+  },
+  "homepage": "https://github.com/your-username/shallowly#readme"
+}

@@ -1,0 +1,7 @@
+src/
+test/
+.babelrc
+.eslintrc
+jest.config.js
+tsconfig.json
+*.md
