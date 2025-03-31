@@ -8,7 +8,7 @@ import { createElement } from 'react';
  * Позволяет рендерить компоненты без их дочерних компонентов и преобразовывать
  * результат в текстовое представление с отступами.
  */
-class ShallowWrapper {
+export class ShallowWrapper {
   /**
    * Создает экземпляр ShallowWrapper для переданного компонента.
    *
@@ -262,8 +262,3 @@ class ShallowWrapper {
  * @param {React.ReactNode} component - React-компонент или элемент для рендеринга.
  * @returns {ShallowWrapper} Обертка для поверхностного рендеринга.
  */
-function shallow(component) {
-  return new ShallowWrapper(component);
-}
-
-export { shallow };
