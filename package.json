@@ -1,6 +1,6 @@
 {
   "name": "shallowly",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Shallowly: Modern shallow renderer for React 18+. Enzyme-compatible API, 2x faster, with TypeScript support.",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -65,8 +65,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bad4iz/shallowly.git",
-    "directory": "docs"
+    "url": "https://github.com/bad4iz/shallowly.git"
   },
   "bugs": {
     "url": "https://github.com/bad4iz/shallowly/issues"
