@@ -112,6 +112,18 @@ export class ShallowWrapper {
   }
 
   /**
+   * Проверяет, существуют ли какие-либо узлы.
+   *
+   * @returns {boolean}
+   */
+  exists() {
+    if (Array.isArray(this.component)) {
+      return this.component.length > 0;
+    }
+    return !!this.component;
+  }
+
+  /**
    * Находит все подузлы в дереве компонентов, которые соответствуют переданному селектору.
    *
    * @param {string|React.ComponentType} selector - Селектор для поиска (имя компонента, CSS-селектор или компонент).
@@ -256,9 +268,3 @@ export class ShallowWrapper {
   }
 }
 
-/**
- * Создает shallow-обертку для React-компонента.
- *
- * @param {React.ReactNode} component - React-компонент или элемент для рендеринга.
- * @returns {ShallowWrapper} Обертка для поверхностного рендеринга.
- */
