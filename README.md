@@ -224,6 +224,6 @@ pie
     "E2E" : 10
 ```
 
-📚 [Full Documentation](/docs/index.md) | 🐞 [Report Issues](/issues)
+📚 [Full Documentation](/docs/index.md) | 🐞 [Report Issues](https://github.com/bad4iz/shallowly/issues)
 
 "Saved us 300+ lines of test boilerplate!" - @bad4iz
