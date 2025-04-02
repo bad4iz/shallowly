@@ -1,4 +1,15 @@
-# Shallowly 🏝️
+# Shallowly 🏝️ - The Modern Unit Testing Tool for React
+
+## 🎯 Key Purpose: Laser-Focused Unit Testing
+
+**"Shallowly exists for one purpose: fast, isolated unit tests of YOUR React components."**
+
+### Why Unit Testing Matters:
+- 🔍 **Isolated verification** - Test components in complete isolation
+- ⚡ **Instant feedback** - Get results in milliseconds, not seconds
+- 🧩 **Precise targeting** - Verify one component at a time
+- 🛡️ **Safe refactoring** - Change implementation without breaking tests
+
 
 ## 🧪 Testing Philosophy
 
@@ -35,10 +46,10 @@
 **The modern Enzyme alternative** for fast unit testing with:
 
 - ✅ Full React 18+ support (Hooks, Context, Suspense)
-- 🚀 2x faster than Enzyme
+- 🚀  Enzyme 🔚💀 It is no longer supported or operational.
 - ⚡ **7x faster** than React Testing Library
 - 🔍 Built-in debug with `.textWithProps()`
-- 📦 5KB size (3x smaller than Enzyme)
+- 📦 5KB size (3x smaller than Enzyme) 🔚💀 It is no longer supported or operational.
 - 🛠 Familiar API - easy migration from Enzyme
 
 ## 🚀 Why Shallowly?
@@ -109,26 +120,84 @@ npm install shallowly --save-dev
 
 ```jsx
 import { shallow } from "shallowly";
+import vi from "vitest";
 
-test("shows loading state", () => {
-  const wrapper = shallow(<DataFetcher isLoading={true} />);
-  expect(wrapper.find("Spinner").exists()).toBe(true);
+const MyComponent = ({ name, age, onClick }) => (
+    <div className="container">
+        <h1>Hello {name}</h1>
+        <p>You are {age} years old</p>
+        <button onClick={onClick}>Click me</button>
+    </div>
+);
+
+describe('🐛 MyComponent', () => {
+    it('🧪 default', () => {
+        expect.hasAssertions();
+        //☣️ Arrange (всякие моки)
+        const onClickSpy = vi.fn();
+
+        //🔥 Act
+        const wrapper = shallow(
+            <MyComponent name="John" age={30} onClick={onClickSpy} />,
+        );
+
+        //❓ Assert
+        expect(wrapper.text()).toMatchSnapshot();
+    });
+    
+    it('🧪 button prop onClick', () => {
+        expect.hasAssertions();
+        //☣️ Arrange (всякие моки)
+        const onClickSpy = vi.fn();
+
+        //🔥 Act
+        const wrapper = shallow(
+            <MyComponent name="John" age={30} onClick={onClickSpy} />,
+        );
+
+        //❓ Assert
+        expect(wrapper.find('button').prop('onClick')).toBe(onClickSpy);
+    });
 });
+
+
+
+```
+
+### Snapshot Testing
+```snap
+
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`🐛 MyComponent > 🧪 default 1`] = `
+"<div>
+  <h1>
+    Hello 
+    John
+  </h1>
+  <p>
+    You are 
+    30
+     years old
+  </p>
+  <button>
+    Click me
+  </button>
+</div>"
+`;
 ```
 
 ## ⚡ Performance Comparison
 
-| Operation                | Shallowly 🚀 |               Enzyme | React Testing Library |
-| ------------------------ | -----------: | -------------------: | --------------------: |
-| **Basic component**      |      12ms ⚡ |   25ms (2.1x slower) |    85ms (7.1x slower) |
-| **100 components**       |     650ms ⚡ | 1200ms (1.8x slower) |  4500ms (6.9x slower) |
-| **Hook-heavy component** |      18ms ⚡ |                 42ms |                 210ms |
-| **Tree traversal**       |       8ms ⚡ |                 22ms |                 150ms |
+| Operation                | Shallowly 🚀 |                                         Enzyme | React Testing Library |
+| ------------------------ | -----------: |-----------------------------------------------:| --------------------: |
+| **Basic component**      |      12ms ⚡ | 🔚💀 It is no longer supported or operational. |    85ms (7.1x slower) |
+| **100 components**       |     650ms ⚡ | 🔚💀 It is no longer supported or operational. |  4500ms (6.9x slower) |
+| **Hook-heavy component** |      18ms ⚡ | 🔚💀 It is no longer supported or operational. |                 210ms |
+| **Tree traversal**       |       8ms ⚡ | 🔚💀 It is no longer supported or operational. |                 150ms |
 
 **Key takeaways:**
-A
-
-- 🏎️ **2.1x faster** than Enzyme in average operations
+- 🏎️ Enzyme 🔚💀 It is no longer supported or operational.
 - ⚡ **7x faster** than React Testing Library
 - 🧠 **40% less memory usage** compared to Enzyme
 - 🌳 **Zero DOM** - pure React reconciliation
@@ -140,6 +209,21 @@ A
 - ✅ Testing complex hooks/context flows
 - ✅ CI pipelines (fast execution)
 
-📚 [Full Documentation](/docs/index.md) | 🐞 Report Issues
+
+## 🚫 What Shallowly Is NOT For:
+- ❌ End-to-end testing (use Cypress/Playwright)
+- ❌ Full integration testing (use RTL)
+- ❌ Visual regression testing (use Storybook/Chromatic)
+
+## 📊 Unit Testing Pyramid
+```terminal
+pie
+    title Test Distribution
+    "Unit (Shallowly)" : 70
+    "Integration" : 20
+    "E2E" : 10
+```
+
+📚 [Full Documentation](/docs/index.md) | 🐞 [Report Issues](/issues)
 
 "Saved us 300+ lines of test boilerplate!" - @bad4iz
