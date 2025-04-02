@@ -87,7 +87,7 @@ console.log(wrapper.props());
 Finds nodes by component type or CSS selector
 ```js
 const wrapper = shallow(<MyComponent name="John" age={30} onClick={() => {}} />);
-expect(wrapper.find('button').props()).toBe();
+console.log(wrapper.find('button').props());
 //{ "children": "Click me", "onClick": [Function onClick] } 
 ```
 
