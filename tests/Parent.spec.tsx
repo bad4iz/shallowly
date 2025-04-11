@@ -28,6 +28,8 @@ describe('🐛 spec Parent', () => {
     const wrapper = shallow(<Parent />);
 
     //❓ Assert
-    expect(wrapper.find('Button')).toMatchSnapshot();
+    expect(wrapper.find('Button').props()).toStrictEqual({
+      onClick: expect.any(Function),
+    });
   });
 });
