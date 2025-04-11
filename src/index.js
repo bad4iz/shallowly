@@ -1,4 +1,4 @@
-import { ShallowWrapper } from './ShallowWrapper';
+import { ShallowWrapper } from "./ShallowWrapper";
 
 /**
  * Создает shallow-обертку для React-компонента.
