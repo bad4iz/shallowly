@@ -1,8 +1,6 @@
 import React from 'react';
 import { createElement } from 'react';
 
-
-
 /**
  * Класс-обертка для поверхностного (shallow) рендеринга React-компонентов.
  * Позволяет рендерить компоненты без их дочерних компонентов и преобразовывать
@@ -27,10 +25,30 @@ export class ShallowWrapper {
   render() {
     if (React.isValidElement(this.component)) {
       const { type, props } = this.component;
-      return typeof type === 'function'
-        ? type(props)
-        : createElement(type, props);
+
+      // Обработка классовых компонентов
+
+      if (typeof type === 'function' && type.prototype && type.prototype.isReactComponent) {
+        const instance = new type(props);
+
+        if (instance.componentWillMount) {
+          instance.componentWillMount();
+        }
+
+        return instance.render();
+      }
+
+      // Обработка функциональных компонентов
+
+      if (typeof type === 'function') {
+        return type(props);
+      }
+
+      // Обработка DOM элементов
+
+      return createElement(type, props);
     }
+
     return this.component;
   }
 
@@ -38,7 +56,7 @@ export class ShallowWrapper {
    * Рендерит элемент в строку с отступами.
    *
    * @param {React.ReactNode} element - Элемент для рендеринга.
-   * @param {number} [indent] - Уровень отступа.
+   * @param  {number} [indent] - Уровень отступа.
    * @returns {string} Строковое представление элемента с отступами.
    */
   renderToString(element, indent = 0) {
@@ -47,10 +65,7 @@ export class ShallowWrapper {
       return `${' '.repeat(indent)}${String(element)}`;
     }
 
-    const type =
-      typeof element.type === 'string'
-        ? element.type
-        : element.type.name || 'Unknown';
+    const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
 
     const children =
       React.Children.map(element.props.children, (child) =>
@@ -177,26 +192,33 @@ export class ShallowWrapper {
 
     // Если селектор - строка (имя компонента или CSS-селектор)
     if (typeof selector === 'string') {
-      // Проверяем по displayName или name компонента
-      const componentName =
-        typeof node.type === 'function'
-          ? node.type.displayName || node.type.name
-          : node.type;
+      // Для классовых компонентов
+      const componentType = node.type;
+
+      let componentName;
+
+      if (typeof componentType === 'function') {
+        if (componentType.prototype && componentType.prototype.isReactComponent) {
+          componentName = componentType.displayName || componentType.name;
+        } else {
+          componentName = componentType.displayName || componentType.name;
+        }
+      } else {
+        componentName = componentType;
+      }
 
       if (componentName === selector) return true;
 
-      // Простая проверка CSS-селекторов (только для DOM элементов)
+      // Проверка CSS-селекторов для DOM элементов
       if (typeof node.type === 'string') {
-        // Проверяем по тегу
         if (node.type === selector) return true;
 
-        // Проверяем по классу (селектор '.class')
         if (selector.startsWith('.') && node.props.className) {
           const classes = node.props.className.split(' ');
+
           return classes.includes(selector.slice(1));
         }
 
-        // Проверяем по id (селектор '#id')
         if (selector.startsWith('#') && node.props.id === selector.slice(1)) {
           return true;
         }
@@ -205,6 +227,7 @@ export class ShallowWrapper {
 
     return false;
   }
+
   /**
    * Возвращает текстовое представление рендеренного компонента вместе с его пропсами.
    *
@@ -227,10 +250,7 @@ export class ShallowWrapper {
       return `${' '.repeat(indent)}${String(element)}`;
     }
 
-    const type =
-      typeof element.type === 'string'
-        ? element.type
-        : element.type.name || 'Unknown';
+    const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
 
     // Форматируем пропсы для вывода
     const formattedProps = [];
@@ -238,13 +258,11 @@ export class ShallowWrapper {
       if (key === 'children') continue; // Пропускаем children
 
       // Специальная обработка функций
-      const propValue =
-        typeof value === 'function' ? 'function' : JSON.stringify(value);
+      const propValue = typeof value === 'function' ? 'function' : JSON.stringify(value);
       formattedProps.push(`${key}=${propValue}`);
     }
 
-    const propsString =
-      formattedProps.length > 0 ? ` ${formattedProps.join(' ')}` : '';
+    const propsString = formattedProps.length > 0 ? ` ${formattedProps.join(' ')}` : '';
 
     const children =
       React.Children.map(element.props.children, (child) =>
@@ -267,4 +285,3 @@ export class ShallowWrapper {
     return result.replace(/\\"/g, '"');
   }
 }
-
