@@ -129,4 +129,5 @@ Will output something like:
 > _The Shallowly Team_  
 > Stay tuned for updates! 🔔
 
+[for development](/docs/dev.ru.md)
 [для разработки](/docs/dev.ru.md)
