@@ -2,9 +2,9 @@
   "name": "shallowly",
   "version": "1.0.8",
   "description": "Shallowly: Modern shallow renderer for React 18+. Enzyme-compatible API, 2x faster, with TypeScript support.",
-  "main": "./dist/main.cjs",
-  "module": "./dist/main.js",
-  "typings": "./dist/main.d.ts",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "typings": "./src/index.d.ts",
   "files": [
     "dist"
   ],
@@ -13,7 +13,7 @@
     "build:watch": "tsc && vite build --watch",
     "coverage": "vitest run --coverage",
     "dev": "vite",
-    "link": "npm link cuon-matrix",
+    "link": "npm link",
     "preview": "vite preview",
     "pub": "npm publish",
     "test": "vitest",
