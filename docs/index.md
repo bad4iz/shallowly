@@ -35,21 +35,23 @@
 
 ```jsx
 const MyComponent = ({ name, age, onClick }) => (
-    <div className="container">
-        <h1>Hello {name}</h1>
-        <p>You are {age} years old</p>
-        <button onClick={onClick}>Click me</button>
-    </div>
+  <div className="container">
+    <h1>Hello {name}</h1>
+    <p>You are {age} years old</p>
+    <button onClick={onClick}>Click me</button>
+  </div>
 );
-
 ```
+
 ## text()
+
 Returns text representation
 
 ```js
 const wrapper = shallow(<MyComponent name="John" age={30} onClick={() => {}} />);
 console.log(wrapper.text());
 ```
+
 Will output something like:
 
 ```
@@ -67,36 +69,44 @@ Will output something like:
 ```
 
 ## prop('name')
+
 Returns specific prop value
+
 ```js
 const wrapper = shallow(<MyComponent name="John" age={30} onClick={() => {}} />);
-console.log(wrapper.prop('name')); 
-// "John" 
+console.log(wrapper.prop('name'));
+// "John"
 ```
 
 ## props()
+
 Returns all props
+
 ```js
 const wrapper = shallow(<MyComponent name="John" age={30} onClick={() => {}} />);
-console.log(wrapper.props()); 
-//{ "age": 30, "name": "John", "onClick": [Function onClick], } 
+console.log(wrapper.props());
+//{ "age": 30, "name": "John", "onClick": [Function onClick], }
 ```
 
-
 ## find()
+
 Finds nodes by component type or CSS selector
+
 ```js
 const wrapper = shallow(<MyComponent name="John" age={30} onClick={() => {}} />);
 console.log(wrapper.find('button').props());
-//{ "children": "Click me", "onClick": [Function onClick] } 
+//{ "children": "Click me", "onClick": [Function onClick] }
 ```
 
 ## textWithProps()
+
 Returns text with props
+
 ```js
 const wrapper = shallow(<MyComponent name="John" age={30} onClick={() => {}} />);
 console.log(wrapper.textWithProps());
 ```
+
 Will output something like:
 
 ```
@@ -112,8 +122,12 @@ Will output something like:
   </button>
 </div>
 ```
+
 ---
 
 > "Good docs are worth the wait!"  
 > _The Shallowly Team_  
 > Stay tuned for updates! 🔔
+
+[for development](/docs/dev.ru.md)
+[для разработки](/docs/dev.ru.md)

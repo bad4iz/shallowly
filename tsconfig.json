@@ -1,14 +1,53 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "emitDeclarationOnly": true,
-    "rootDir": "src",
-    "esModuleInterop": true,
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "node",
+      "vite/client",
+      "vitest/globals"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.test.*"]
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
+// {
+//
+//
+//   "compilerOptions": {
+//     "declaration": true,
+//     "declarationDir": "dist/types",
+//     "emitDeclarationOnly": true,
+//     "rootDir": "src",
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "strict": true
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "**/*.test.*"]
+// }
