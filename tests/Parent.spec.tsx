@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from '../src';
 import { describe, expect, it } from 'vitest';
 
+import { shallow } from '../src';
 import { Parent } from './Parent';
 
 describe('🐛 spec Parent', () => {
