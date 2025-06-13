@@ -1,16 +1,22 @@
 import React from 'react';
 
 /**
+ * Converts a React element to a string ignoring props, while keeping the
+ * nested structure. Useful for lightweight snapshots.
  *
- * @param element
- * @param indent
+ * @param {React.ReactNode} element - Element or node to render.
+ * @param {number} [indent=0]       - Current indentation in spaces.
+ * @returns {string}                String representation of the tree.
  */
 export function renderToString(element, indent = 0) {
   if (!React.isValidElement(element)) {
     return `${' '.repeat(indent)}${String(element)}`;
   }
 
-  const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
+  // Figure out the name of the tag/component.
+  const type = typeof element.type === 'string'
+    ? element.type
+    : element.type.name || 'Unknown';
   const children =
     React.Children.map(element.props.children, (child) => renderToString(child, indent + 2)) || [];
 

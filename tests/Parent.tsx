@@ -8,11 +8,11 @@ import { Children } from './Children';
  *
  * @returns JSX.Element.
  */
-export const Parent = () => {
+export const Parent = ({ onClick }: { onClick: () => void }) => {
   return (
     <div>
       <Children title="title" />
-      <Button onClick={() => {}} />
+      <Button onClick={onClick} />
     </div>
   );
 };

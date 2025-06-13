@@ -1,9 +1,14 @@
 import React from 'react';
 
 /**
+ * Checks whether a React element matches the given selector. Supports:
+ *   • function or class components
+ *   • string selector of component/tag name
+ *   • CSS-like .className and #id selectors for DOM elements
  *
- * @param node
- * @param selector
+ * @param {React.ReactNode} node     Node to test.
+ * @param {string|Function} selector Selector.
+ * @returns {boolean}                True if matches.
  */
 export function matchesSelector(node, selector) {
   if (!React.isValidElement(node)) return false;
