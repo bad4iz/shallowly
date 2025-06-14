@@ -1,8 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`🐛 spec Parent > 🧪 default 1`] = `
-"<div>
-  <Children />
-  <Button />
-</div>"
-`;

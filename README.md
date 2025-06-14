@@ -1,5 +1,21 @@
 # Shallowly 🏝️ - The Modern Unit Testing Tool for React
 
+---
+
+[![npm version](https://img.shields.io/npm/v/shallowly?style=flat-square)](https://www.npmjs.com/package/shallowly)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/shallowly?style=flat-square)](https://bundlephobia.com/package/shallowly)
+[![build status](https://img.shields.io/github/actions/workflow/status/bad4iz/shallowly/tests.yml?style=flat-square)](https://github.com/bad4iz/shallowly/actions)
+[![coverage](https://img.shields.io/codecov/c/github/bad4iz/shallowly?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
+
+---
+
+## 📚 Documentation
+
+- [English Documentation](/docs/index.md)
+- [Документация на русском](/docs/index.ru.md)
+- [Development Guide](/docs/dev.md)
+- [Руководство разработки на русском](/docs/dev.ru.md)
+
 ## 🎯 Key Purpose: Laser-Focused Unit Testing
 
 **"Shallowly exists for one purpose: fast, isolated unit tests of YOUR React components."**
@@ -224,6 +240,6 @@ pie
     "E2E" : 10
 ```
 
-📚 [Full Documentation](/docs/index.md) | 🐞 [Report Issues](https://github.com/bad4iz/shallowly/issues)
+📚 [English Documentation](/docs/index.md) | 🇷🇺 [Документация на русском](/docs/index.ru.md) | 🐞 [Report Issues](https://github.com/bad4iz/shallowly/issues)
 
 "Saved us 300+ lines of test boilerplate!" - @bad4iz
