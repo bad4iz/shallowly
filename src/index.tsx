@@ -5,8 +5,9 @@ import { ShallowWrapper } from './ShallowWrapper';
  * @param component - React-компонент или элемент для рендеринга.
  * @returns {ShallowWrapper} Обертка для поверхностного рендеринга.
  */
-function shallow(component: React.ReactNode): ShallowWrapper {
-  return new ShallowWrapper(component);
+function shallow(component: React.ReactElement | React.ReactNode[]): ShallowWrapper {
+  // Cast to any to satisfy constructor typing differences.
+  return new ShallowWrapper(component as any);
 }
 
 export { shallow };
