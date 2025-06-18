@@ -1,6 +1,6 @@
 {
   "name": "shallowly",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Shallowly: Modern shallow renderer for React 18+. Enzyme-compatible API, 2x faster, with TypeScript support.",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
