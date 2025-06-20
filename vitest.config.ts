@@ -16,11 +16,11 @@ export default defineConfig({
       reportsDirectory: 'coverage_vitest',
 
       thresholds: {
-        // Thresholds for all files
-        branches: 100,
-        functions: 0,
-        lines: 0,
-        statements: 0,
+        // Coverage thresholds for all files
+        branches: 50,
+        functions: 50,
+        lines: 50,
+        statements: 50,
       },
     },
     environment: 'jsdom',
