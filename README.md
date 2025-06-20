@@ -9,7 +9,37 @@
 [![branches](https://img.shields.io/badge/branches-78%25-yellow?style=flat-square)]()
 [![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)]()
 
+<!-- Основной бейдж покрытия с токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
 
+<!-- Бейдж в плоском стиле с токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg?token=${CODECOV_TOKEN}&style=flat)](https://codecov.io/gh/bad4iz/shallowly)
+
+<!-- Бейдж с логотипом и токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg?token=${CODECOV_TOKEN}&logo=codecov)](https://codecov.io/gh/bad4iz/shallowly)
+
+<!-- Бейдж с логотипом, плоским стилем и токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg?token=${CODECOV_TOKEN}&style=flat&logo=codecov)](https://codecov.io/gh/bad4iz/shallowly)
+
+<!-- Sunburst диаграмма с токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graphs/sunburst.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
+
+<!-- Icicle график с токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graphs/icicle.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
+
+<!-- Tree график с токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graphs/tree.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
+
+<!-- Для ветки master с токеном -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/master/graph/badge.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
+
+<!-- HTML версия с токеном -->
+<a href="https://codecov.io/gh/bad4iz/shallowly">
+  <img src="https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg?token=${CODECOV_TOKEN}" />
+</a>
+
+<!-- Без токена (для публичных репозиториев) -->
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg)](https://codecov.io/gh/bad4iz/shallowly)
 
 
 ---
