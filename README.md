@@ -10,22 +10,13 @@
 [![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)]()
 
 <!-- Icicle график с токеном -->
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graphs/icicle.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/sunburst.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
 
 <!-- Tree график с токеном -->
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graphs/tree.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/tree.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
 
 <!-- Для ветки master с токеном -->
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/master/graph/badge.svg?token=${CODECOV_TOKEN})](https://codecov.io/gh/bad4iz/shallowly)
-
-<!-- HTML версия с токеном -->
-<a href="https://codecov.io/gh/bad4iz/shallowly">
-  <img src="https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg?token=${CODECOV_TOKEN}" />
-</a>
-
-<!-- Без токена (для публичных репозиториев) -->
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/branch/main/graph/badge.svg)](https://codecov.io/gh/bad4iz/shallowly)
-
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/icicle.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
 
 ---
 
