@@ -5,26 +5,12 @@
 [![npm version](https://img.shields.io/npm/v/shallowly?style=flat-square)](https://www.npmjs.com/package/shallowly)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/shallowly?style=flat-square)](https://bundlephobia.com/package/shallowly)
 [![build status](https://img.shields.io/github/actions/workflow/status/bad4iz/shallowly/tests.yml?style=flat-square)](https://github.com/bad4iz/shallowly/actions)
-
-### 🛡️ Code Coverage Badges (choose one):
-
-
-<!-- Option 1: Simple badge -->
-[![codecov](https://img.shields.io/codecov/c/github/bad4iz/shallowly?style=flat-square&token=YOUR_TOKEN)](https://codecov.io/gh/bad4iz/shallowly)
-
-<!-- Option 2: Shield with icon -->
-[![codecov](https://img.shields.io/static/v1?label=Test%20Coverage&message=85%25&color=success&style=for-the-badge&logo=codecov&logoColor=white)](https://codecov.io/gh/bad4iz/shallowly)
-
-<!-- Option 3: Compact style -->
-[![coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/yourusername/yourgist/raw/coverage.json&style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
-
-<!-- Option 4: Detailed metrics -->
 [![coverage](https://img.shields.io/badge/coverage-85%25-brightgreen?style=flat-square)]()
 [![branches](https://img.shields.io/badge/branches-78%25-yellow?style=flat-square)]()
 [![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)]()
 
 
-> **Note**: Replace `YOUR_TOKEN` with your actual Codecov token for private repositories. For public repos, the token is optional.
+
 
 ---
 
