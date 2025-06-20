@@ -5,8 +5,8 @@ import React from 'react';
  * and nested children, preserving the original depth.
  *
  * @param {React.ReactNode} element - Element or node to render.
- * @param {number} [indent=0]       - Current indentation size in spaces.
- * @returns {string}                String representation of the tree.
+ * @param {number} [indent] - Current indentation size in spaces.
+ * @returns {string} String representation of the tree.
  */
 export function renderWithProps(element, indent = 0) {
   if (!React.isValidElement(element)) {

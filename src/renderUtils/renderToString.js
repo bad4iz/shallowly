@@ -5,8 +5,8 @@ import React from 'react';
  * nested structure. Useful for lightweight snapshots.
  *
  * @param {React.ReactNode} element - Element or node to render.
- * @param {number} [indent=0]       - Current indentation in spaces.
- * @returns {string}                String representation of the tree.
+ * @param {number} [indent] - Current indentation in spaces.
+ * @returns {string} String representation of the tree.
  */
 export function renderToString(element, indent = 0) {
   if (!React.isValidElement(element)) {

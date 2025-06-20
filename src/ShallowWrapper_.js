@@ -1,20 +1,28 @@
+/* eslint-disable */
 import React from 'react';
 
 import { renderToString } from './renderUtils/renderToString';
-
 import { renderWithProps } from './renderUtils/renderWithProps';
-
 import { findNodes } from './utils/findNodes';
-
 import { matchesSelector } from './utils/matchesSelector';
 
+/**
+ *
+ */
 export class ShallowWrapper {
+  /**
+   *
+   * @param component
+   */
   constructor(component) {
     this.component = component;
 
     this.renderedElement = this.render();
   }
 
+  /**
+   *
+   */
   render() {
     if (React.isValidElement(this.component)) {
       const { type, props } = this.component;
@@ -39,10 +47,16 @@ export class ShallowWrapper {
     return this.component;
   }
 
+  /**
+   *
+   */
   text() {
     return renderToString(this.renderedElement);
   }
 
+  /**
+   *
+   */
   props() {
     if (!React.isValidElement(this.renderedElement)) {
       return {};
@@ -55,10 +69,17 @@ export class ShallowWrapper {
     return this.renderedElement.props || {};
   }
 
+  /**
+   *
+   * @param key
+   */
   prop(key) {
     return this.props()[key];
   }
 
+  /**
+   *
+   */
   exists() {
     if (Array.isArray(this.component)) {
       return this.component.length > 0;
@@ -67,6 +88,10 @@ export class ShallowWrapper {
     return !!this.component;
   }
 
+  /**
+   *
+   * @param selector
+   */
   find(selector) {
     const results = [];
 
@@ -75,6 +100,9 @@ export class ShallowWrapper {
     return new ShallowWrapper(results.length === 1 ? results[0] : results);
   }
 
+  /**
+   *
+   */
   textWithProps() {
     return renderWithProps(this.renderedElement);
   } 
