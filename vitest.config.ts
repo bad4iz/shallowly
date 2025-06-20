@@ -12,7 +12,7 @@ export default defineConfig({
             exclude: [],
             include: ['src/**/*.[tj]s?(x)'],
             provider: 'v8',
-            reporter: ['text', 'html', 'json', 'cobertura'],
+            reporter: ['text', 'html', 'json', 'cobertura', 'lcov'],
             reportsDirectory: 'coverage_vitest',
 
             thresholds: {

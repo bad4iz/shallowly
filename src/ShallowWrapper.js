@@ -1,11 +1,8 @@
 import React from 'react';
 
 import { renderToString } from './renderUtils/renderToString';
-
 import { renderWithProps } from './renderUtils/renderWithProps';
-
 import { findNodes } from './utils/findNodes';
-
 import { matchesSelector } from './utils/matchesSelector';
 
 /**
@@ -15,8 +12,10 @@ import { matchesSelector } from './utils/matchesSelector';
  */
 export class ShallowWrapper {
   /**
-   * @param {React.ReactElement|Array<React.ReactNode>} component Root element.
-   * @param {boolean} [shouldRender=true]                        Whether to execute render.
+   * Creates new shallow wrapper instance.
+   *
+   * @param {React.ReactElement|Array<React.ReactNode>} component - Root element to wrap.
+   * @param {boolean} [shouldRender] - Whether to execute render immediately.
    */
   constructor(component, shouldRender = true) {
     this.component = component;
@@ -28,7 +27,8 @@ export class ShallowWrapper {
   /**
    * Performs a shallow render of the current element. If `shouldRender` is
    * false, returns the original element without executing its body.
-   * @returns {React.ReactNode}
+   *
+   * @returns {React.ReactNode} Rendered React node.
    */
   render() {
     // If we are not supposed to render (for example, a node returned from `find`),
@@ -61,13 +61,19 @@ export class ShallowWrapper {
     return this.component;
   }
 
+  /**
+   * Returns plain text representation of the shallow–rendered element.
+   *
+   * @returns {string} Text content.
+   */
   text() {
     return renderToString(this.renderedElement);
   }
 
   /**
    * Returns all props of the current element.
-   * @returns {Record<string, any>}
+   *
+   * @returns {Record<string, any>} Props object.
    */
   props() {
     // When this wrapper was created via `find`, we should derive the props
@@ -84,9 +90,10 @@ export class ShallowWrapper {
   }
 
   /**
-   * Returns specific prop value.
-   * @param {string} key
-   * @returns {*}
+   * Returns specific prop value by name.
+   *
+   * @param {string} key - Prop key.
+   * @returns {*} Prop value.
    */
   prop(key) {
     return this.props()[key];
@@ -94,7 +101,8 @@ export class ShallowWrapper {
 
   /**
    * Checks whether the element/array of elements exists.
-   * @returns {boolean}
+   *
+   * @returns {boolean} Whether element exists.
    */
   exists() {
     if (Array.isArray(this.component)) {
@@ -107,8 +115,9 @@ export class ShallowWrapper {
   /**
    * Finds descendant nodes matching selector and returns a new `ShallowWrapper`
    * without re-rendering found nodes.
-   * @param {string|Function} selector
-   * @returns {ShallowWrapper}
+   *
+   * @param {string|Function} selector - CSS selector string or component type.
+   * @returns {ShallowWrapper} Wrapper with found elements.
    */
   find(selector) {
     const results = [];
@@ -122,6 +131,10 @@ export class ShallowWrapper {
 
   /**
    * Returns a string containing both text and props.
+   *
+   * @description Combine text content with stringified props for quick snapshot-style asserts.
+   *
+   * @returns {string} Text with embedded props JSON.
    */
   textWithProps() {
     return renderWithProps(this.renderedElement);
@@ -129,7 +142,6 @@ export class ShallowWrapper {
 }
 
   
-
 
   
   

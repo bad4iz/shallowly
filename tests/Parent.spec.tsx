@@ -1,6 +1,7 @@
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { vi } from 'vitest';
+
 import { shallow } from '../src';
 import { Parent } from './Parent';
 

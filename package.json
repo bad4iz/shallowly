@@ -17,7 +17,8 @@
     "preview": "vite preview",
     "pub": "npm publish",
     "test": "vitest",
-    "test:ui": "vitest --ui --changed"
+    "test:ui": "vitest --ui --changed",
+    "lint": "eslint src tests --ext .js,.jsx,.ts,.tsx --fix"
   },
   "keywords": [
     "react",
@@ -45,54 +46,51 @@
   ],
   "author": "@bad4iz",
   "license": "MIT",
-  "peerDependencies": {
-    "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
   "devDependencies": {
-    "@eslint/compat": "^1.2.8",
-    "@eslint/js": "^9.25.1",
-    "@rollup/plugin-typescript": "12.1.2",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@types/node": "22.14.0",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.2",
-    "@typescript-eslint/eslint-plugin": "^8.29.1",
-    "@typescript-eslint/parser": "^8.29.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "^3.2.4",
-    "@vitest/ui": "^3.2.4",
-    "eslint": "9.24.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-bad4iz": "bad4iz/eslint-plugin-bad4iz",
+    "@eslint/compat": "1.3.0",
+    "@eslint/js": "9.29.0",
+    "@rollup/plugin-typescript": "12.1.3",
+    "@testing-library/jest-dom": "6.6.3",
+    "@types/node": "24.0.3",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@typescript-eslint/eslint-plugin": "8.34.1",
+    "@typescript-eslint/parser": "8.34.1",
+    "@vitejs/plugin-react": "4.5.2",
+    "@vitest/coverage-v8": "3.2.4",
+    "@vitest/ui": "3.2.4",
+    "eslint": "9.29.0",
+    "eslint-config-react-app": "7.0.1",
+    "eslint-plugin-bad4iz": "file:./eslint-plugin-bad4iz",
     "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-jsdoc": "^50.6.9",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-sort-keys-fix": "^1.1.2",
-    "eslint-plugin-vitest": "^0.5.4",
-    "globals": "^16.0.0",
-    "jsdom": "^26.0.0",
+    "eslint-plugin-jsdoc": "51.0.3",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "eslint-plugin-sort-keys-fix": "1.1.2",
+    "eslint-plugin-vitest": "0.5.4",
+    "globals": "16.2.0",
+    "jsdom": "26.1.0",
     "prettier": "3.5.3",
     "rollup-plugin-typescript-paths": "1.5.0",
     "tslib": "2.8.1",
     "typescript": "5.8.3",
-    "typescript-eslint": "^8.31.0",
-    "vite": "6.2.6",
+    "typescript-eslint": "8.34.1",
+    "vite": "6.3.5",
     "vitest": "3.2.4"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/bad4iz/shallowly.git"
   },
+  "peerDependencies": {
+    "react": ">=18"
+  },
   "bugs": {
     "url": "https://github.com/bad4iz/shallowly/issues"
   },
   "homepage": "https://github.com/bad4iz/shallowly#readme",
-  "docs": "https://github.com/bad4iz/shallowly/blob/main/docs/index.md",
-  "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  }
+  "docs": "https://github.com/bad4iz/shallowly/blob/main/docs/index.md"
 }

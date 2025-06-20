@@ -6,6 +6,8 @@ import { Children } from './Children';
 /**
  * Parent.
  *
+ * @param root0 - Component props.
+ * @param root0.onClick - Click handler callback.
  * @returns JSX.Element.
  */
 export const Parent = ({ onClick }: { onClick: () => void }) => {

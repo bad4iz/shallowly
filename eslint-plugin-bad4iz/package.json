@@ -1,0 +1,12 @@
+{
+  "name": "eslint-plugin-bad4iz",
+  "version": "1.0.0",
+  "description": "Local copy of eslint-plugin-bad4iz with custom rules.",
+  "main": "index.js",
+  "peerDependencies": {
+    "eslint": "^8 || ^9"
+  },
+  "keywords": ["eslint", "eslintplugin", "bad4iz"],
+  "author": "@bad4iz",
+  "license": "MIT"
+}
