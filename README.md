@@ -9,14 +9,9 @@
 [![branches](https://img.shields.io/badge/branches-78%25-yellow?style=flat-square)]()
 [![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)]()
 
-<!-- Icicle график с токеном -->
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/sunburst.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
-
 <!-- Tree график с токеном -->
 [![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/tree.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
-
-<!-- Для ветки master с токеном -->
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/icicle.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/graph/badge.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
 
 ---
 
