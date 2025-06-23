@@ -8,7 +8,7 @@
 
 ### 🛡️ Code Coverage Badges (choose one):
 
-```markdown
+
 <!-- Option 1: Simple badge -->
 [![codecov](https://img.shields.io/codecov/c/github/bad4iz/shallowly?style=flat-square&token=YOUR_TOKEN)](https://codecov.io/gh/bad4iz/shallowly)
 
@@ -22,7 +22,7 @@
 [![coverage](https://img.shields.io/badge/coverage-85%25-brightgreen?style=flat-square)]()
 [![branches](https://img.shields.io/badge/branches-78%25-yellow?style=flat-square)]()
 [![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)]()
-```
+ 
 
 > **Note**: Replace `YOUR_TOKEN` with your actual Codecov token for private repositories. For public repos, the token is optional.
 
