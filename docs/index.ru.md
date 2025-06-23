@@ -10,10 +10,10 @@
 
 ---
 
-[Установка](#установка) • 
-[Быстрый старт](#быстрый-старт) • 
-[API](#api) • 
-[Архитектура React](./react-architecture-ru.md) • 
+[Установка](#установка) •
+[Быстрый старт](#быстрый-старт) •
+[API](#api) •
+[Архитектура React](./react-architecture-ru.md) •
 [GitHub](https://github.com/bad4iz/shallowly)
 
 [![версия npm](https://img.shields.io/npm/v/shallowly?style=flat-square)](https://www.npmjs.com/package/shallowly)
