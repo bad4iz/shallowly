@@ -5,22 +5,20 @@
 [![npm version](https://img.shields.io/npm/v/shallowly?style=flat-square)](https://www.npmjs.com/package/shallowly)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/shallowly?style=flat-square)](https://bundlephobia.com/package/shallowly)
 [![build status](https://img.shields.io/github/actions/workflow/status/bad4iz/shallowly/tests.yml?style=flat-square)](https://github.com/bad4iz/shallowly/actions)
+
 <!-- Option 4: Detailed metrics -->
-[![coverage](https://img.shields.io/badge/coverage-85%25-brightgreen?style=flat-square)]()
-[![branches](https://img.shields.io/badge/branches-78%25-yellow?style=flat-square)]()
-[![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)]()
 
+[![coverage](https://img.shields.io/badge/coverage-85%25-brightgreen?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
+[![branches](https://img.shields.io/badge/branches-78%25-yellow?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
+[![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
 
-### 🛡️ Code Coverage Badges (choose one):
+<!-- Code Coverage Badges -->
 
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/graph/badge.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
 
-<!-- Option 3: Compact style -->
-[![coverage]([https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/yourusername/yourgist/raw/coverage.json&style=flat-square](https://codecov.io/gh/bad4iz/shallowly/graphs/icicle.svg?token=0JF4RTDDIC))](https://codecov.io/gh/bad4iz/shallowly)
+<!-- Для ветки master с токеном -->
 
-
- 
-
-> **Note**: Replace `YOUR_TOKEN` with your actual Codecov token for private repositories. For public repos, the token is optional.
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/icicle.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
 
 ---
 
@@ -38,6 +36,7 @@
 **"Shallowly exists for one purpose: fast, isolated unit tests of YOUR React components."**
 
 ### Why Unit Testing Matters:
+
 - 🔍 **Isolated verification** - Test components in complete isolation
 - ⚡ **Instant feedback** - Get results in milliseconds, not seconds
 - 🧩 **Precise targeting** - Verify one component at a time
@@ -80,7 +79,7 @@
 **The modern Enzyme alternative** for fast unit testing with:
 
 - ✅ Full React 18+ support (Hooks, Context, Suspense)
-- 🚀  Enzyme 🔚💀 It is no longer supported or operational.
+- 🚀 Enzyme 🔚💀 It is no longer supported or operational.
 - ⚡ **7x faster** than React Testing Library
 - 🔍 Built-in debug with `.textWithProps()`
 - 📦 5KB size (3x smaller than Enzyme) 🔚💀 It is no longer supported or operational.
@@ -139,7 +138,7 @@ console.log(wrapper.textWithProps());
 
 ```tsx
 const wrapper = shallow<Props>(<User id={123} />);
-wrapper.prop("id"); // Type-safe: number
+wrapper.prop('id'); // Type-safe: number
 ```
 
 ## 📦 Quick Start
@@ -153,52 +152,46 @@ npm install shallowly --save-dev
 ### Write tests:
 
 ```jsx
-import { shallow } from "shallowly";
-import vi from "vitest";
+import { shallow } from 'shallowly';
+import vi from 'vitest';
 
 const MyComponent = ({ name, age, onClick }) => (
-    <div className="container">
-        <h1>Hello {name}</h1>
-        <p>You are {age} years old</p>
-        <button onClick={onClick}>Click me</button>
-    </div>
+  <div className="container">
+    <h1>Hello {name}</h1>
+    <p>You are {age} years old</p>
+    <button onClick={onClick}>Click me</button>
+  </div>
 );
 
 describe('🐛 MyComponent', () => {
-    it('🧪 default', () => {
-        expect.hasAssertions();
-        //☣️ Arrange (всякие моки)
-        const onClickSpy = vi.fn();
+  it('🧪 default', () => {
+    expect.hasAssertions();
+    //☣️ Arrange (всякие моки)
+    const onClickSpy = vi.fn();
 
-        //🔥 Act
-        const wrapper = shallow(
-            <MyComponent name="John" age={30} onClick={onClickSpy} />,
-        );
+    //🔥 Act
+    const wrapper = shallow(<MyComponent name="John" age={30} onClick={onClickSpy} />);
 
-        //❓ Assert
-        expect(wrapper.text()).toMatchSnapshot();
-    });
-    
-    it('🧪 button prop onClick', () => {
-        expect.hasAssertions();
-        //☣️ Arrange (всякие моки)
-        const onClickSpy = vi.fn();
+    //❓ Assert
+    expect(wrapper.text()).toMatchSnapshot();
+  });
 
-        //🔥 Act
-        const wrapper = shallow(
-            <MyComponent name="John" age={30} onClick={onClickSpy} />,
-        );
+  it('🧪 button prop onClick', () => {
+    expect.hasAssertions();
+    //☣️ Arrange (всякие моки)
+    const onClickSpy = vi.fn();
 
-        //❓ Assert
-        expect(wrapper.find('button').prop('onClick')).toBe(onClickSpy);
-    });
+    //🔥 Act
+    const wrapper = shallow(<MyComponent name="John" age={30} onClick={onClickSpy} />);
+
+    //❓ Assert
+    expect(wrapper.find('button').prop('onClick')).toBe(onClickSpy);
+  });
 });
-
-
-
 ```
 
 ### Snapshot Testing
+
 ```snap
 
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
@@ -206,11 +199,11 @@ describe('🐛 MyComponent', () => {
 exports[`🐛 MyComponent > 🧪 default 1`] = `
 "<div>
   <h1>
-    Hello 
+    Hello
     John
   </h1>
   <p>
-    You are 
+    You are
     30
      years old
   </p>
@@ -224,13 +217,14 @@ exports[`🐛 MyComponent > 🧪 default 1`] = `
 ## ⚡ Performance Comparison
 
 | Operation                | Shallowly 🚀 |                                         Enzyme | React Testing Library |
-| ------------------------ | -----------: |-----------------------------------------------:| --------------------: |
+| ------------------------ | -----------: | ---------------------------------------------: | --------------------: |
 | **Basic component**      |      12ms ⚡ | 🔚💀 It is no longer supported or operational. |    85ms (7.1x slower) |
 | **100 components**       |     650ms ⚡ | 🔚💀 It is no longer supported or operational. |  4500ms (6.9x slower) |
 | **Hook-heavy component** |      18ms ⚡ | 🔚💀 It is no longer supported or operational. |                 210ms |
 | **Tree traversal**       |       8ms ⚡ | 🔚💀 It is no longer supported or operational. |                 150ms |
 
 **Key takeaways:**
+
 - 🏎️ Enzyme 🔚💀 It is no longer supported or operational.
 - ⚡ **7x faster** than React Testing Library
 - 🧠 **40% less memory usage** compared to Enzyme
@@ -243,13 +237,14 @@ exports[`🐛 MyComponent > 🧪 default 1`] = `
 - ✅ Testing complex hooks/context flows
 - ✅ CI pipelines (fast execution)
 
-
 ## 🚫 What Shallowly Is NOT For:
+
 - ❌ End-to-end testing (use Cypress/Playwright)
 - ❌ Full integration testing (use RTL)
 - ❌ Visual regression testing (use Storybook/Chromatic)
 
 ## 📊 Unit Testing Pyramid
+
 ```terminal
 pie
     title Test Distribution
