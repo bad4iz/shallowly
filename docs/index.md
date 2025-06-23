@@ -13,6 +13,7 @@ Precise, focused, and lightning-fast unit testing for React components
 [Installation](#installation) • 
 [Getting Started](#getting-started) • 
 [API Reference](#api-reference) • 
+[React Architecture](./react-architecture.md) • 
 [GitHub](https://github.com/bad4iz/shallowly)
 
 [![npm version](https://img.shields.io/npm/v/shallowly?style=flat-square)](https://www.npmjs.com/package/shallowly)
@@ -37,6 +38,8 @@ Shallowly is purpose-built for unit testing React components, offering a level o
 ## The Unit Testing Standard for React
 
 Shallowly is the de facto standard for unit testing React components. While other libraries force you to test implementation details or require full DOM rendering, Shallowly gives you the precision and speed that proper unit testing demands.
+
+> **Architecture & Testing**: If you think unit tests are time-consuming and expensive, check out our [recommended React architecture](./react-architecture.md). While tests should never dictate architecture, this approach makes your code cleaner, more readable, and extensible. Fast unit test coverage simply demonstrates these benefits. The cleaner your code, the faster and easier unit testing becomes.
 
 ### Key Benefits for Unit Testing:
 - **No Deep Rendering** - Test components in complete isolation
