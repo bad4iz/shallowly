@@ -14,9 +14,7 @@ export function renderToString(element, indent = 0) {
   }
 
   // Figure out the name of the tag/component.
-  const type = typeof element.type === 'string'
-    ? element.type
-    : element.type.name || 'Unknown';
+  const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
   const children =
     React.Children.map(element.props.children, (child) => renderToString(child, indent + 2)) || [];
 
@@ -33,4 +31,26 @@ export function renderToString(element, indent = 0) {
   result += `</${type}>`;
 
   return result;
+}
+
+/**
+ * Converts a React element to a single-line string ignoring props.
+ *
+ * @param {React.ReactNode} element - Element or node to render.
+ * @returns {string} One-line representation of the tree.
+ */
+export function renderToInlineString(element) {
+  if (!React.isValidElement(element)) {
+    return String(element);
+  }
+
+  const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
+  const children =
+    React.Children.map(element.props.children, (child) => renderToInlineString(child)) || [];
+
+  if (children.length === 0 && type !== 'Unknown') {
+    return `<${type} />`;
+  }
+
+  return `<${type}>${children.join('')}</${type}>`;
 }

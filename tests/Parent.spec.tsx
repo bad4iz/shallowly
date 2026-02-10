@@ -1,6 +1,4 @@
-import React from 'react';
-import { describe, expect, it } from 'vitest';
-import { vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { shallow } from '../src';
 import { Parent } from './Parent';
@@ -40,6 +38,34 @@ describe('🐛 spec Parent', () => {
         <Button onClick=function />
       </div>"
     `);
+  });
+
+  it('🧪 textInline', () => {
+    expect.hasAssertions();
+    //☣️ Arrange (всякие моки)
+
+    // 🧹 clear mock
+
+    //🔥 Act
+    const wrapper = shallow(<Parent onClick={() => {}} />);
+
+    //❓ Assert
+    expect(wrapper.textInline()).toMatchInlineSnapshot('"<div><Children /><Button /></div>"');
+  });
+
+  it('🧪 textWithPropsInline', () => {
+    expect.hasAssertions();
+    //☣️ Arrange (всякие моки)
+
+    // 🧹 clear mock
+
+    //🔥 Act
+    const wrapper = shallow(<Parent onClick={() => {}} />);
+
+    //❓ Assert
+    expect(wrapper.textWithPropsInline()).toMatchInlineSnapshot(
+      '"<div><Children title="title" /><Button onClick=function /></div>"',
+    );
   });
 
   it('🧪 find', () => {

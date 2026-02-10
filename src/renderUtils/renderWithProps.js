@@ -14,9 +14,10 @@ export function renderWithProps(element, indent = 0) {
   }
 
   // Determine tag/component name for the current element.
-  const type = typeof element.type === 'string'
-    ? element.type // DOM element like 'div'
-    : element.type.name || 'Unknown'; // Function/class component
+  const type =
+    typeof element.type === 'string'
+      ? element.type // DOM element like 'div'
+      : element.type.name || 'Unknown'; // Function/class component
   const formattedProps = [];
 
   // Build an array of "key=value" strings for each prop except children.
@@ -46,4 +47,35 @@ export function renderWithProps(element, indent = 0) {
   result += `</${type}>`;
 
   return result.replace(/\\"/g, '"');
+}
+
+/**
+ * Recursively converts a React element to a one-line string with props.
+ *
+ * @param {React.ReactNode} element - Element or node to render.
+ * @returns {string} One-line representation of the tree.
+ */
+export function renderWithPropsInline(element) {
+  if (!React.isValidElement(element)) {
+    return String(element);
+  }
+
+  const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
+  const formattedProps = [];
+
+  for (const [key, value] of Object.entries(element.props)) {
+    if (key === 'children') continue;
+    const propValue = typeof value === 'function' ? 'function' : JSON.stringify(value);
+    formattedProps.push(`${key}=${propValue}`);
+  }
+
+  const propsString = formattedProps.length > 0 ? ` ${formattedProps.join(' ')}` : '';
+  const children =
+    React.Children.map(element.props.children, (child) => renderWithPropsInline(child)) || [];
+
+  if (children.length === 0 && type !== 'Unknown') {
+    return `<${type}${propsString} />`.replace(/\\"/g, '"');
+  }
+
+  return `<${type}${propsString}>${children.join('')}</${type}>`.replace(/\\"/g, '"');
 }

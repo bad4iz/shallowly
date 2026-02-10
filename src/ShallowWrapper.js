@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { renderToString } from './renderUtils/renderToString';
-import { renderWithProps } from './renderUtils/renderWithProps';
+import { renderToInlineString, renderToString } from './renderUtils/renderToString';
+import { renderWithProps, renderWithPropsInline } from './renderUtils/renderWithProps';
 import { findNodes } from './utils/findNodes';
 import { matchesSelector } from './utils/matchesSelector';
 
@@ -68,6 +68,15 @@ export class ShallowWrapper {
    */
   text() {
     return renderToString(this.renderedElement);
+  }
+
+  /**
+   * Returns one-line text representation of the shallow-rendered element.
+   *
+   * @returns {string} One-line text content.
+   */
+  textInline() {
+    return renderToInlineString(this.renderedElement);
   }
 
   /**
@@ -138,60 +147,14 @@ export class ShallowWrapper {
    */
   textWithProps() {
     return renderWithProps(this.renderedElement);
-  } 
+  }
+
+  /**
+   * Returns one-line string containing both text and props.
+   *
+   * @returns {string} One-line text with embedded props JSON.
+   */
+  textWithPropsInline() {
+    return renderWithPropsInline(this.renderedElement);
+  }
 }
-
-  
-
-  
-  
-  
-
-
-  
-  
-    
-  
-
-
-  
-
-
-  
-  
-    
-  
-  
-    
-  
-
-
-  
-
-  
-
-
-  
-  
-  
-
-
-  
-  
-    
-  
-
-
-  
-
-
-  
-  
-    
-  
-  
-    
-  
-
-
-  
