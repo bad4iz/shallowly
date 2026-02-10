@@ -39,3 +39,23 @@ npm run unlink
 - Step 5 reverts to the npm registry version when done testing
 
 > This workflow lets you test changes to Shallowly in your actual project before publishing.
+
+### Debug serializers
+
+Use these helpers on `ShallowWrapper` when debugging render output:
+
+- `text()` - multiline tree without props
+- `textInline()` - one-line tree without props
+- `textWithProps()` - multiline tree with serialized props
+- `textWithPropsInline()` - one-line tree with serialized props
+
+Example:
+
+```jsx
+const wrapper = shallow(<User name="John" age={30} />);
+
+console.log(wrapper.text());
+console.log(wrapper.textInline());
+console.log(wrapper.textWithProps());
+console.log(wrapper.textWithPropsInline());
+```

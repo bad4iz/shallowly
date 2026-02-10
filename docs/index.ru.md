@@ -125,6 +125,24 @@ console.log(wrapper.text());
 // </div>
 ```
 
+#### `textInline() => string`
+
+Возвращает однострочное строковое представление дерева отрендеренных компонентов.
+
+**Пример:**
+
+```jsx
+const wrapper = shallow(
+  <div>
+    <h1>Привет</h1>
+    <p>Мир</p>
+  </div>,
+);
+console.log(wrapper.textInline());
+// Вывод:
+// <div><h1>Привет</h1><p>Мир</p></div>
+```
+
 #### `prop(name: string) => any`
 
 Возвращает значение пропса по имени.
@@ -191,6 +209,24 @@ console.log(wrapper.textWithProps());
 // <div className="container">
 //   <User name="Иван" age=30 />
 // </div>
+```
+
+#### `textWithPropsInline() => string`
+
+Возвращает однострочное строковое представление дерева компонентов, включая пропсы.
+
+**Пример:**
+
+```jsx
+const wrapper = shallow(
+  <div className="container">
+    <User name="Иван" age={30} />
+  </div>,
+);
+
+console.log(wrapper.textWithPropsInline());
+// Вывод:
+// <div className="container"><User name="Иван" age=30 /></div>
 ```
 
 #### `exists() => boolean`

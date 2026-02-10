@@ -134,7 +134,7 @@ describe('🐛 spec Button', () => {
 
     const props = {
       onClick: vi.fn(),
-      children: 'Not important, it\'s mocked',
+      children: "Not important, it's mocked",
     };
 
     // 🔥 Act - render the component
@@ -240,7 +240,7 @@ describe('🐛 spec Component', () => {
 
 2. **No checks for function calls**: it is sufficient to verify that props are correctly passed through the snapshot
 
-3. **Using `.textWithProps()`**: allows you to see both text content and passed props
+3. **Using debug serializers**: `.textWithProps()` for multiline snapshots, `.textWithPropsInline()` for compact one-line snapshots, and `.textInline()` for compact tree output without props
 
 4. **Three-stage test structure**:
    - Arrange: setting up mocks and props

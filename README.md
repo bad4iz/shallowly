@@ -81,7 +81,7 @@
 - ✅ Full React 18+ support (Hooks, Context, Suspense)
 - 🚀 Enzyme 🔚💀 It is no longer supported or operational.
 - ⚡ **7x faster** than React Testing Library
-- 🔍 Built-in debug with `.textWithProps()`
+- 🔍 Built-in debug with `.textWithProps()`, `.textInline()`, and `.textWithPropsInline()`
 - 📦 5KB size (3x smaller than Enzyme) 🔚💀 It is no longer supported or operational.
 - 🛠 Familiar API - easy migration from Enzyme
 
@@ -92,7 +92,7 @@ Enzyme is deprecated, and React Testing Library doesn't support shallow renderin
 - ✔ Future-proof - Full support for React 18+ (Hooks, Context, Suspense)
 - ✔ Blazing fast - 2x quicker render cycles than Enzyme (benchmarks)
 - ✔ Familiar API - Enzyme-like syntax for painless migration
-- ✔ Debug-friendly - .textWithProps() reveals your component structure
+- ✔ Debug-friendly - `.textWithProps()` / `.textWithPropsInline()` reveal structure with props, `.textInline()` gives compact text output
 - ✔ Tiny footprint - 5KB (gzipped), zero dependencies
 
 ```bash
@@ -128,10 +128,14 @@ shallow(
 
 ```jsx
 console.log(wrapper.textWithProps());
+console.log(wrapper.textWithPropsInline());
+console.log(wrapper.textInline());
 // Outputs:
 // <DataFetching isLoading={true}>
 // <Spinner />
 // </DataFetching>
+// <DataFetching isLoading={true}><Spinner /></DataFetching>
+// <DataFetching><Spinner /></DataFetching>
 ```
 
 ### 4. TypeScript Native
