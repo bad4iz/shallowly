@@ -1,6 +1,5 @@
 import { fixupPluginRules } from '@eslint/compat';
 import pluginJs from '@eslint/js';
-import eslintConfigReactApp from 'eslint-config-react-app';
 import bad4iz from 'eslint-plugin-bad4iz';
 import jsdoc from 'eslint-plugin-jsdoc';
 import react from 'eslint-plugin-react';
@@ -8,7 +7,6 @@ import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import sortKeysFix from 'eslint-plugin-sort-keys-fix';
-import vitest from 'eslint-plugin-vitest';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -51,7 +49,6 @@ export default [
       bad4iz,
       jsdoc,
       react,
-      'react-app': eslintConfigReactApp,
       'react-hooks': fixupPluginRules(eslintPluginReactHooks),
       'simple-import-sort': simpleImportSort,
       'sort-keys-fix': sortKeysFix,
@@ -137,24 +134,6 @@ export default [
       'jsdoc/require-returns-type': 0,
     },
   },
-  // test config
-  {
-    files: [
-      'tests/**',
-      '**/*.{jestSpec,jestTest}.{ts,tsx,js,jsx}',
-      '**/*.{enzymeSpec}.{ts,tsx,js,jsx}',
-      '**/*.{spec,test}.{ts,tsx,js,jsx}',
-      '**/*.intest.{ts,tsx,js,jsx}',
-    ],
-    plugins: {
-      vitest,
-    },
-    rules: {
-      ...vitest.configs.recommended.rules, // you can also use vitest.configs.all.rules to enable all rules
-      'vitest/max-nested-describe': ['error', { max: 3 }], // you can also modify rules' behavior using option like this
-    },
-  },
-
   // ...compat.extends(),
   {
     languageOptions: {
