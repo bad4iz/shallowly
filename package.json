@@ -4,7 +4,7 @@
   "description": "Shallowly: Modern shallow renderer for React 18+. Enzyme-compatible API, 2x faster, with TypeScript support.",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
-  "typings": "./dist/main.d.ts",
+  "typings": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
