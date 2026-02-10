@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getElementTypeName } from '../utils/getElementTypeName';
+
 /**
  * Converts a React element to a string ignoring props, while keeping the
  * nested structure. Useful for lightweight snapshots.
@@ -14,7 +16,7 @@ export function renderToString(element, indent = 0) {
   }
 
   // Figure out the name of the tag/component.
-  const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
+  const type = getElementTypeName(element.type);
   const children =
     React.Children.map(element.props.children, (child) => renderToString(child, indent + 2)) || [];
 
@@ -44,7 +46,7 @@ export function renderToInlineString(element) {
     return String(element);
   }
 
-  const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
+  const type = getElementTypeName(element.type);
   const children =
     React.Children.map(element.props.children, (child) => renderToInlineString(child)) || [];
 

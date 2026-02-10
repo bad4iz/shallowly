@@ -1,5 +1,6 @@
- 
 import React from 'react';
+
+import { getElementTypeName } from './getElementTypeName';
 
 /**
  * Checks whether a React element matches the given selector. Supports:
@@ -19,18 +20,7 @@ export function matchesSelector(node, selector) {
   }
 
   if (typeof selector === 'string') {
-    const componentType = node.type;
-    let componentName;
-
-    if (typeof componentType === 'function') {
-      if (componentType.prototype && componentType.prototype.isReactComponent) {
-        componentName = componentType.displayName || componentType.name;
-      } else {
-        componentName = componentType.displayName || componentType.name;
-      }
-    } else {
-      componentName = componentType;
-    }
+    const componentName = getElementTypeName(node.type);
 
     if (componentName === selector) return true;
 

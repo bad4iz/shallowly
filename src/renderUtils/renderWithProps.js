@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getElementTypeName } from '../utils/getElementTypeName';
+
 /**
  * Recursively converts a React element to a string that contains its props
  * and nested children, preserving the original depth.
@@ -14,10 +16,7 @@ export function renderWithProps(element, indent = 0) {
   }
 
   // Determine tag/component name for the current element.
-  const type =
-    typeof element.type === 'string'
-      ? element.type // DOM element like 'div'
-      : element.type.name || 'Unknown'; // Function/class component
+  const type = getElementTypeName(element.type);
   const formattedProps = [];
 
   // Build an array of "key=value" strings for each prop except children.
@@ -60,7 +59,7 @@ export function renderWithPropsInline(element) {
     return String(element);
   }
 
-  const type = typeof element.type === 'string' ? element.type : element.type.name || 'Unknown';
+  const type = getElementTypeName(element.type);
   const formattedProps = [];
 
   for (const [key, value] of Object.entries(element.props)) {
