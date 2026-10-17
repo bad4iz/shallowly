@@ -1,330 +1,233 @@
-# 📚 Документация Shallowly
+# Документация Shallowly
 
-# Shallowly
+Поверхностный рендеринг для изолированных юнит-тестов React-компонентов. Проверяйте выходную структуру компонента, переданные детям props и callbacks без выполнения дочерних компонентов и создания DOM.
 
-### Лучшая библиотека для юнит-тестирования React-компонентов
+[Read in English](./index.md) · [Быстрый старт](#быстрый-старт) · [Справочник API](#справочник-api) · [Миграция с Enzyme](#миграция-с-enzyme)
 
-Точное, сфокусированное и молниеносное юнит-тестирование для React
+## Установка
 
-[🇬🇧 Read in English](/docs/index.md)
-
----
-
-[Установка](#установка) •
-[Быстрый старт](#быстрый-старт) •
-[API](#api) •
-[Архитектура React](./react-architecture-ru.md) •
-[GitHub](https://github.com/bad4iz/shallowly)
-
-[![версия npm](https://img.shields.io/npm/v/shallowly?style=flat-square)](https://www.npmjs.com/package/shallowly)
-[![размер](https://img.shields.io/bundlephobia/minzip/shallowly?style=flat-square)](https://bundlephobia.com/package/shallowly)
-[![статус сборки](https://img.shields.io/github/actions/workflow/status/bad4iz/shallowly/tests.yml?style=flat-square)](https://github.com/bad4iz/shallowly/actions)
-[![покрытие тестами](https://img.shields.io/codecov/c/github/bad4iz/shallowly?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
-
----
-
-## Почему Shallowly для юнит-тестирования?
-
-Shallowly создан специально для юнит-тестирования React-компонентов, предлагая уровень точности и производительности, недоступный инструментам интеграционного тестирования. В отличие от других решений, которые поощряют тестирование деталей реализации, Shallowly сфокусирован исключительно на принципах юнит-тестирования:
-
-- 🎯 **Настоящее юнит-тестирование** - Единственная библиотека, созданная специально для юнит-тестов, а не интеграционных тестов
-- ⚡ **Молниеносная скорость** - Рендерит только один уровень в глубину, пропуская ненужный рендеринг дочерних компонентов
-- 🧪 **Идеальная изоляция** - Каждый компонент тестируется в полной изоляции от своих детей
-- 🔍 **Сфокусированные утверждения** - Тестируйте именно то, что важно, не беспокоясь о поведении дочерних компонентов
-- 🚫 **Больше никакой избыточности** - Пропустите настройку test runner'а и сосредоточьтесь на написании тестов
-
-> **Зачем юнит-тестирование?** Юнит-тесты проверяют отдельные модули кода изолированно, что делает их быстрее, надежнее и проще в отладке по сравнению с интеграционными тестами. Shallowly - единственная библиотека, которая действительно придерживается этой философии для React-компонентов.
-
-## Стандарт юнит-тестирования для React
-
-Shallowly - это де-факто стандарт для юнит-тестирования React-компонентов. В то время как другие библиотеки заставляют вас тестировать детали реализации или требуют полного рендеринга DOM, Shallowly предоставляет точность и скорость, необходимые для правильного юнит-тестирования.
-
-> **Архитектура и тестирование**: Если вы думаете, что юнит-тесты — это долго и дорого, посмотрите на [рекомендуемую архитектуру React](./react-architecture-ru.md). Хотя тесты не должны диктовать архитектуру, этот подход сделает ваш код чище, читабельней и расширяемей. Быстрое покрытие юнит-тестами просто это подтвердит. Чем чище ваш код, тем быстрее и проще происходит написание юнит-тестов.
-
-### Ключевые преимущества для юнит-тестирования:
-
-- **Без глубокого рендеринга** - Тестируйте компоненты в полной изоляции
-- **Без test runner'а** - Работает с любым test runner'ом
-- **Без браузерного окружения** - Запускайте тесты прямо в Node.js
-- **Без внешних зависимостей** - Легковесный и сфокусированный на юнит-тестировании
-
-## Установка стандарта юнит-тестирования
-
-Shallowly - это не просто еще одна библиотека для тестирования, а стандарт для юнит-тестирования React-компонентов. В то время как другие решения требуют сложной настройки и браузерного окружения, Shallowly работает из коробки.
+Shallowly требует **React 19** (`react: "^19.0.0"` в `peerDependencies`). React 18 не входит в заявленный диапазон поддержки. В существующем проекте на React 19:
 
 ```bash
-# С использованием npm
-npm install --save-dev shallowly
-
-# С использованием yarn
-yarn add --dev shallowly
-
-# С использованием pnpm
-pnpm add --save-dev shallowly
+npm install --save-dev shallowly vitest
 ```
 
-## Юнит-тестирование с Shallowly: Быстрый старт
+Для нового проекта также выполните `npm install react@^19`. Shallowly предоставляет API обёртки, а Vitest или другой test runner запускает тесты. Браузерное окружение для Shallowly не требуется.
 
-Вот как написать ваш первый юнит-тест с Shallowly. Обратите внимание, как мы фокусируемся на тестировании компонента в изоляции:
+## Быстрый старт
+
+Сохраните пример в `Parent.test.jsx`, затем выполните `npx vitest run`:
 
 ```jsx
+import React from 'react';
 import { shallow } from 'shallowly';
-import MyComponent from './MyComponent';
+import { expect, test, vi } from 'vitest';
 
-describe('MyComponent', () => {
-  it('рендерится с пропсами по умолчанию', () => {
-    const wrapper = shallow(<MyComponent name="Иван" />);
-    expect(wrapper.text()).toContain('Привет, Иван');
-  });
+function Child() {
+  throw new Error('This child must not render in the parent unit test');
+}
+
+function Parent({ label, onSave }) {
+  return (
+    <section>
+      <Child label={label} onSave={onSave} />
+    </section>
+  );
+}
+
+test('passes the label and save callback to Child', () => {
+  const onSave = vi.fn();
+  const wrapper = shallow(<Parent label="Save" onSave={onSave} />);
+
+  expect(wrapper.textInline()).toBe('<section><Child /></section>');
+  const child = wrapper.find(Child);
+  expect(child.prop('label')).toBe('Save');
+
+  const save = child.prop('onSave');
+  if (typeof save !== 'function') throw new Error('Expected onSave callback');
+  save();
+  expect(onSave).toHaveBeenCalledOnce();
 });
 ```
 
-## Справочник API для юнит-тестирования
+При создании обёртки `Parent` выполняется один раз. `Child` остаётся React-элементом, поэтому его тело с исключением не вызывается. `find(Child)` также не выполняет этот компонент.
 
-API Shallowly разработано специально для юнит-тестирования React-компонентов. Каждый метод оптимизирован для ясности, точности и скорости в контексте юнит-тестирования.
+Дальше можно перейти к [руководству по структуре, props, callbacks и мокам хуков](./testing-component-contracts.md) и [запускаемому примеру](../examples/component-contracts).
 
-### `shallow(component: ReactElement, options?: Object) => ShallowWrapper`
+## Рендеринг и изоляция зависимостей
 
-Основная функция, создающая shallow-обертку вокруг вашего React-компонента.
+- Функциональный компонент, переданный в `shallow`, вызывается напрямую с входными props. Мокируйте используемые им хуки, чтение контекста и другие зависимости.
+- Тела дочерних компонентов и их хуки не выполняются. Доступны props детей и явно переданные `children`, но не элементы, которые дочерний компонент вернул бы при рендеринге.
+- Shallowly не создаёт диспетчер хуков React, не планирует обновления состояния, не запускает эффекты и не распространяет значения провайдеров. Реальное поведение замокированных хуков такой тест не проверяет.
+- Suspense и другие обёртки могут присутствовать в выходном дереве, но Shallowly не разрешает приостановленные операции и lazy-компоненты, не выбирает fallback Suspense и не раскрывает корневые компоненты в `memo`/`forwardRef`.
+- Для классового корня создаётся экземпляр, вызывается `componentWillMount`, если он есть, а затем `render`. Это не полный жизненный цикл React; поддерживаемого API обновления состояния, доступа к экземпляру и повторного рендеринга нет.
+- DOM не создаётся. Прямой вызов callback проверяет логику функции, а не отправку браузерного события или систему событий React.
 
-**Параметры:**
+Дополняйте изолированные тесты интеграционными, чтобы проверить DOM, настоящие хуки, передачу контекста и взаимодействие компонентов.
 
-- `component`: React-элемент для поверхностного рендеринга
-- `options`: (Опционально) Объект конфигурации
-  - `disableLifecycleMethods`: (Boolean) Отключить выполнение методов жизненного цикла (по умолчанию: `false`)
+## Справочник API
 
-**Пример:**
+### `shallow(component)`
+
+Создаёт обёртку для React-узла. Если корень — функция или класс, выполняет его описанным выше способом. Если это элемент вроде `<div />`, оборачивает его напрямую.
+
+Аргумент настроек, опция `disableLifecycleMethods` и generic-параметр TypeScript не поддерживаются.
+
+### `find(selector)`
+
+Ищет в выходном дереве элементов, включая его корень, и возвращает обёртку без выполнения найденных компонентов. Поддерживаемые селекторы:
+
+| Селектор         | Что ищет                                  |
+| ---------------- | ----------------------------------------- |
+| `find(Child)`    | Компонент по ссылке на функцию или класс. |
+| `find('Child')`  | Компонент по имени или `displayName`.     |
+| `find('button')` | Элемент по имени тега.                    |
+| `find('.save')`  | Элемент тега с указанным классом.         |
+| `find('#save')`  | Элемент тега с указанным ID.              |
+
+Это не полноценный движок CSS-селекторов. Не поддерживаются селекторы атрибутов вроде `button[type="submit"]`, составные селекторы вроде `button.save` и селекторы потомков.
+
+`find` обходит React-элементы, которые уже есть в выходной структуре, и переданные им children. Он не рендерит детей для поиска дополнительных элементов. У обёртки нет `length`, `at()` и API перебора. Для нескольких совпадений используйте `exists()`, чтобы проверить наличие результата, а для чтения props — уникальный селектор. Не продолжайте цепочку поиска и не ожидайте сериализации отдельных элементов на результате с несколькими совпадениями.
+
+### `props()` и `prop(name)`
+
+`props()` возвращает props текущего элемента, а `prop(name)` — одно значение. Их смысл зависит от обёртки:
+
+- Для `shallow(<Parent ... />)` это **входные props Parent**, а не props первого элемента, который вернул Parent.
+- После `find` с ровно одним совпадением это **props найденного элемента**.
+- После поиска с нулём или несколькими совпадениями `props()` возвращает `{}`, а `prop(name)` — `undefined`.
 
 ```jsx
+function Greeting({ name }) {
+  return <h1 id="greeting">{name}</h1>;
+}
+
+const wrapper = shallow(<Greeting name="Ada" />);
+wrapper.prop('name'); // 'Ada': входной prop компонента Greeting
+wrapper.prop('id'); // undefined: входного prop id у Greeting нет
+wrapper.find('h1').prop('id'); // 'greeting': prop выходного элемента
+```
+
+### `exists()`
+
+На результате поиска проверяет, найден ли хотя бы один элемент:
+
+```jsx
+const wrapper = shallow(
+  <section>
+    <button>Save</button>
+  </section>,
+);
+wrapper.find('button').exists(); // true
+wrapper.find('input').exists(); // false
+```
+
+### Методы вывода и отладки
+
+| Метод                   | Результат                                      |
+| ----------------------- | ---------------------------------------------- |
+| `text()`                | Многострочное дерево с тегами, без props.      |
+| `textInline()`          | Дерево в одну строку с тегами, без props.      |
+| `textWithProps()`       | Многострочное дерево с сериализованными props. |
+| `textWithPropsInline()` | Дерево в одну строку с сериализованными props. |
+
+Несмотря на название, `text()` возвращает представление дерева, а не обычный текст или DOM HTML. Функции в props отображаются как `function`, остальные значения сериализуются в JSON. Эти методы предназначены для отладки и снимков дерева элементов, а не для генерации веб-страниц.
+
+```jsx
+const wrapper = shallow(<button id="save">Save</button>);
+wrapper.text();
+// <button>
+//   Save
+// </button>
+wrapper.textInline(); // '<button>Save</button>'
+wrapper.textWithPropsInline(); // '<button id="save">Save</button>'
+```
+
+## TypeScript
+
+Объявления типов входят в пакет. Используйте `shallow(element)`, а не `shallow<Props>(element)`. Тип значения prop не выводится из props компонента: проверяйте его перед использованием. Переменная типа `unknown` делает необходимость проверки явной для TypeScript:
+
+```tsx
+import * as React from 'react';
 import { shallow } from 'shallowly';
-import MyComponent from './MyComponent';
 
-const wrapper = shallow(<MyComponent name="Иван" />);
+type SaveButtonProps = { onSave: () => void };
+
+function SaveButton({ onSave }: SaveButtonProps) {
+  return <button onClick={onSave}>Save</button>;
+}
+
+const wrapper = shallow(<SaveButton onSave={() => {}} />);
+const onClick: unknown = wrapper.find('button').prop('onClick');
+if (typeof onClick !== 'function') throw new Error('Expected onClick callback');
+onClick();
 ```
 
-### `ShallowWrapper`
+Для отдельного TypeScript-проекта добавьте `typescript` и `@types/react` в devDependencies и включите JSX в конфигурации TypeScript. Настройки есть в [запускаемом примере](../examples/component-contracts).
 
-#### `text() => string`
+## Миграция с Enzyme
 
-Возвращает строковое представление дерева отрендеренных компонентов.
+Shallowly предоставляет похожий на Enzyme API для части изолированных тестов. Полной совместимости для замены библиотеки одним импортом нет.
 
-**Пример:**
+| Паттерн Enzyme                               | Поведение или замена в Shallowly                                       |
+| -------------------------------------------- | ---------------------------------------------------------------------- |
+| `shallow`, `find`, `props`, `prop`, `exists` | Доступны с описанными выше правилами селекторов и props.               |
+| `.text()`                                    | Сериализует теги и структуру; проверки обычного текста нужно изменить. |
+| `.setProps(nextProps)`                       | Создайте новую обёртку с нужными props.                                |
+| `.setState()`, `.instance()`                 | Не реализованы. Мокируйте зависимости и проверяйте результат.          |
+| `.simulate('click')`                         | Прочитайте `onClick` и вызовите функцию с нужными аргументами.         |
+| `.at(index)`, `.length`                      | Не реализованы; для проверки props найдите уникальный элемент.         |
+| Сложные CSS-селекторы                        | Замените на поддерживаемые простые селекторы.                          |
+| Настройки жизненного цикла                   | Не реализованы; не полагайтесь на имитацию жизненного цикла React.     |
+
+Например, существующий тест Enzyme со spy `onSave` мог выглядеть так:
 
 ```jsx
-const wrapper = shallow(
-  <div>
-    <h1>Привет</h1>
-    <p>Мир</p>
-  </div>,
-);
-console.log(wrapper.text());
-// Вывод:
-// <div>
-//   <h1>Привет</h1>
-//   <p>Мир</p>
-// </div>
+// Enzyme
+const wrapper = shallow(<SaveButton onSave={onSave} />);
+wrapper.find('button').simulate('click');
 ```
 
-#### `textInline() => string`
-
-Возвращает однострочное строковое представление дерева отрендеренных компонентов.
-
-**Пример:**
+Соответствующий тест Shallowly:
 
 ```jsx
-const wrapper = shallow(
-  <div>
-    <h1>Привет</h1>
-    <p>Мир</p>
-  </div>,
-);
-console.log(wrapper.textInline());
-// Вывод:
-// <div><h1>Привет</h1><p>Мир</p></div>
-```
+import React from 'react';
+import { shallow } from 'shallowly';
+import { expect, test, vi } from 'vitest';
 
-#### `prop(name: string) => any`
+function SaveButton({ onSave }) {
+  return <button onClick={onSave}>Save</button>;
+}
 
-Возвращает значение пропса по имени.
-
-**Пример:**
-
-```jsx
-const wrapper = shallow(<User name="Иван" age={30} />);
-console.log(wrapper.prop('name')); // "Иван"
-console.log(wrapper.prop('age')); // 30
-```
-
-#### `props() => Object`
-
-Возвращает все пропсы корневого компонента.
-
-**Пример:**
-
-```jsx
-const wrapper = shallow(<User name="Иван" age={30} />);
-console.log(wrapper.props());
-// { name: "Иван", age: 30 }
-```
-
-#### `find(selector: string | ComponentType) => ShallowWrapper`
-
-Находит все узлы в дереве рендеринга, соответствующие указанному селектору.
-
-**Поддерживаемые селекторы:**
-
-- Конструктор компонента: `find(MyComponent)`
-- Имя компонента: `find('MyComponent')`
-- CSS-селектор: `find('.class')`, `find('#id')`, `find('div')`
-
-**Пример:**
-
-```jsx
-const wrapper = shallow(
-  <div>
-    <Button>Нажми меня</Button>
-    <Button>Не нажимай</Button>
-  </div>,
-);
-
-const buttons = wrapper.find(Button);
-console.log(buttons.length); // 2
-```
-
-#### `textWithProps() => string`
-
-Возвращает строковое представление дерева компонентов, включая пропсы.
-
-**Пример:**
-
-```jsx
-const wrapper = shallow(
-  <div className="container">
-    <User name="Иван" age={30} />
-  </div>,
-);
-
-console.log(wrapper.textWithProps());
-// Вывод:
-// <div className="container">
-//   <User name="Иван" age=30 />
-// </div>
-```
-
-#### `textWithPropsInline() => string`
-
-Возвращает однострочное строковое представление дерева компонентов, включая пропсы.
-
-**Пример:**
-
-```jsx
-const wrapper = shallow(
-  <div className="container">
-    <User name="Иван" age={30} />
-  </div>,
-);
-
-console.log(wrapper.textWithPropsInline());
-// Вывод:
-// <div className="container"><User name="Иван" age=30 /></div>
-```
-
-#### `exists() => boolean`
-
-Проверяет, существует ли элемент в дереве рендеринга.
-
-**Пример:**
-
-```jsx
-const wrapper = shallow(
-  <div>
-    <span>Привет</span>
-  </div>,
-);
-console.log(wrapper.find('span').exists()); // true
-console.log(wrapper.find('button').exists()); // false
-```
-
-## Примеры
-
-### Тестирование вывода компонента
-
-```jsx
-test('отображает имя пользователя', () => {
-  const wrapper = shallow(<User name="Иван" />);
-  expect(wrapper.text()).toContain('Иван');
+test('forwards the save callback', () => {
+  const onSave = vi.fn();
+  const wrapper = shallow(<SaveButton onSave={onSave} />);
+  const onClick = wrapper.find('button').prop('onClick');
+  if (typeof onClick !== 'function') throw new Error('Expected onClick callback');
+  onClick();
+  expect(onSave).toHaveBeenCalledOnce();
 });
 ```
 
-### Тестирование пропсов
+Чтобы проверить другие входные props, создавайте независимые обёртки:
 
 ```jsx
-test('передает правильные пропсы в кнопку', () => {
-  const onClick = jest.fn();
-  const wrapper = shallow(<LoginForm onSubmit={onClick} />);
+function Status({ error }) {
+  return <section>{error ? <p className="error">{error}</p> : null}</section>;
+}
 
-  const button = wrapper.find('button[type="submit"]');
-  button.prop('onClick')();
-
-  expect(onClick).toHaveBeenCalled();
-});
+const normal = shallow(<Status />);
+const failed = shallow(<Status error="Save failed" />);
+normal.find('.error').exists(); // false
+failed.find('.error').textInline(); // '<p>Save failed</p>'
 ```
 
-### Тестирование условного рендеринга
+## Дополнительные материалы
 
-```jsx
-test('показывает ошибку при её наличии', () => {
-  // Изначально ошибки нет
-  const wrapper = shallow(<Form />);
-  expect(wrapper.find('.error').exists()).toBe(false);
-
-  // После появления ошибки
-  wrapper.setProps({ error: 'Что-то пошло не так' });
-  expect(wrapper.find('.error').text()).toBe('Что-то пошло не так');
-});
-```
-
-## Почему Shallowly лучше других библиотек
-
-### Shallowly против других решений
-
-| Возможность                | Shallowly            | Enzyme       | React Testing Library          |
-| -------------------------- | -------------------- | ------------ | ------------------------------ |
-| **Философия тестирования** | 🎯 Юнит-тестирование | ❓ Смешанная | ❌ Интеграционное тестирование |
-| **Рендеринг**              | 🔍 Только Shallow    | ⚠️ Смешанный | ❌ Полный DOM                  |
-| **Скорость**               | ⚡ Молниеносная      | 🐌 Низкая    | 🐢 Очень низкая                |
-| **Изоляция**               | ✅ Идеальная         | ❌ Плохая    | ❌ Отсутствует                 |
-| **Фокус API**              | 🎯 Юнит-тестирование | 🔄 Общий     | ❌ Интеграционное тестирование |
-| **Размер**                 | 📦 Ультра-легкий     | 📦📦 Тяжелый | 📦📦📦 Очень тяжелый           |
-
-### Миграция с Enzyme
-
-Если вы переходите с Enzyme, вот как Shallowly предлагает лучший опыт юнит-тестирования:
-
-| Возможность             | Enzyme.shallow | Shallowly            |
-| ----------------------- | -------------- | -------------------- |
-| Поверхностный рендеринг | ✅ Да          | ✅ Да                |
-| find() по компоненту    | ✅ Да          | ✅ Да                |
-| find() по CSS           | ✅ Да          | ✅ Базовая поддержка |
-| setProps()              | ✅ Да          | 🔜 В разработке      |
-| setState()              | ✅ Да          | 🔜 В разработке      |
-| simulate()              | ✅ Да          | 🔜 В разработке      |
-| Доступ к инстансу       | ✅ Да          | 🔜 В разработке      |
-| Методы жизненного цикла | ✅ Да          | ✅ Частично          |
-| Размер (min+gzip)       | ~100KB         | ~5KB                 |
-
-## Вклад в проект
-
-Мы приветствуем вклад в проект! Пожалуйста, прочитайте наше [Руководство по вкладу](docs/CONTRIBUTING.ru.md), чтобы начать.
-
-## Лицензия
+- [Структура компонента, props, callbacks и моки хуков](./testing-component-contracts.md)
+- [Руководство по архитектуре React](./react-architecture-ru.md)
+- [Заявления о производительности и отдельная задача бенчмарка](../README.md#performance)
+- [Руководство разработки](./dev.ru.md) · [Участие в проекте](./CONTRIBUTING.ru.md)
+- [Сообщить о проблеме](https://github.com/bad4iz/shallowly/issues)
 
 MIT © [Bad4iz](https://github.com/bad4iz)
-
----
-
-> "Простота — это высшая степень утончённости."  
-> _Леонардо да Винчи_
-
-[English Version](/docs/index.md)
-[Development Guide](/docs/dev.ru.md) | [Руководство разработки](/docs/dev.ru.md)

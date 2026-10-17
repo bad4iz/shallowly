@@ -1,262 +1,124 @@
-# Shallowly 🏝️ - The Modern Unit Testing Tool for React
+# Shallowly 🏝️
 
----
+**Shallow rendering for isolated React component tests. Inspect component output, child props, and callbacks with an Enzyme-like API.**
 
 [![npm version](https://img.shields.io/npm/v/shallowly?style=flat-square)](https://www.npmjs.com/package/shallowly)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/shallowly?style=flat-square)](https://bundlephobia.com/package/shallowly)
 [![build status](https://img.shields.io/github/actions/workflow/status/bad4iz/shallowly/tests.yml?style=flat-square)](https://github.com/bad4iz/shallowly/actions)
+[![codecov](https://codecov.io/gh/bad4iz/shallowly/graph/badge.svg)](https://codecov.io/gh/bad4iz/shallowly)
 
-<!-- Option 4: Detailed metrics -->
+Shallowly calls the component under test and lets you inspect the React elements it returns. Child components stay as elements: their bodies and hooks are not executed. No DOM is required.
 
-[![coverage](https://img.shields.io/badge/coverage-85%25-brightgreen?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
-[![branches](https://img.shields.io/badge/branches-78%25-yellow?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
-[![functions](https://img.shields.io/badge/functions-92%25-brightgreen?style=flat-square)](https://codecov.io/gh/bad4iz/shallowly)
+## Install
 
-<!-- Code Coverage Badges -->
-
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/graph/badge.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
-
-<!-- Для ветки master с токеном -->
-
-[![codecov](https://codecov.io/gh/bad4iz/shallowly/graphs/icicle.svg?token=0JF4RTDDIC)](https://codecov.io/gh/bad4iz/shallowly)
-
----
-
-## 📚 Documentation
-
-- [English Documentation](/docs/index.md)
-- [Документация на русском](/docs/index.ru.md)
-- [React Architecture Guide](/docs/react-architecture.md)
-- [Руководство по архитектуре React](/docs/react-architecture-ru.md)
-- [Development Guide](/docs/dev.md)
-- [Руководство разработки на русском](/docs/dev.ru.md)
-
-## 🎯 Key Purpose: Laser-Focused Unit Testing
-
-**"Shallowly exists for one purpose: fast, isolated unit tests of YOUR React components."**
-
-### Why Unit Testing Matters:
-
-- 🔍 **Isolated verification** - Test components in complete isolation
-- ⚡ **Instant feedback** - Get results in milliseconds, not seconds
-- 🧩 **Precise targeting** - Verify one component at a time
-- 🛡️ **Safe refactoring** - Change implementation without breaking tests
-
-> **Architecture & Testing**: If you think unit tests are time-consuming and expensive, take a look at our [recommended React architecture](./docs/react-architecture.md). While tests should never dictate architecture, this approach makes your code cleaner, more readable, and extensible - with unit test coverage becoming a natural byproduct. The cleaner your code, the faster and easier unit testing becomes.
-
-## 🧪 Testing Philosophy
-
-> **"Don't test React or third-party libraries - only test the code YOU wrote here."**  
-> _Shallowly's core mantra_
-
-### Why this matters:
-
-1. 🚫 **No redundant tests** - React and popular libraries are already well-tested by their maintainers
-2. 💡 **Focus on business logic** - Verify only your unique functionality
-3. ⚡ **Blazing fast** - Skip unnecessary rendering of entire component trees
-4. 🎯 **Precise targeting** - Test components in complete isolation
-5. 🔒 **Future-proof** - Your tests won't break when dependencies update
-
-> "Good tests don't check how React works - they check how YOUR application works with React."
-
-### What this means in practice:
-
-✅ DO test:
-
-- Your component's output
-- Your business logic
-- Your custom hooks
-- Your state management
-
-❌ DON'T test:
-
-- React's internal behavior
-- Third-party component rendering
-- Library implementation details
-
-## The Modern Shallow Renderer for React 18+ Testing
-
-**The modern Enzyme alternative** for fast unit testing with:
-
-- ✅ Full React 18+ support (Hooks, Context, Suspense)
-- 🚀 Enzyme 🔚💀 It is no longer supported or operational.
-- ⚡ **7x faster** than React Testing Library
-- 🔍 Built-in debug with `.textWithProps()`, `.textInline()`, and `.textWithPropsInline()`
-- 📦 5KB size (3x smaller than Enzyme) 🔚💀 It is no longer supported or operational.
-- 🛠 Familiar API - easy migration from Enzyme
-
-## 🚀 Why Shallowly?
-
-Enzyme is deprecated, and React Testing Library doesn't support shallow rendering. Shallowly solves this with:
-
-- ✔ Future-proof - Full support for React 18+ (Hooks, Context, Suspense)
-- ✔ Blazing fast - 2x quicker render cycles than Enzyme (benchmarks)
-- ✔ Familiar API - Enzyme-like syntax for painless migration
-- ✔ Debug-friendly - `.textWithProps()` / `.textWithPropsInline()` reveal structure with props, `.textInline()` gives compact text output
-- ✔ Tiny footprint - 5KB (gzipped), zero dependencies
+Use Shallowly in a **React 19** project. The package declares `react: "^19.0.0"` as a peer dependency; React 18 is outside that supported range.
 
 ```bash
-npm install shallowly
-
-# or
-
-yarn add shallowly
+npm install --save-dev shallowly vitest
 ```
 
-## ✨ Key Features
+For a new project, install React first with `npm install react@^19`.
 
-### 1. React 18+ Ready
+## First test with Vitest
 
-Test modern features without workarounds:
+Save this as `Parent.test.jsx`:
 
 ```jsx
-shallow(
-  <Suspense fallback={<Loader />}>
-    <AsyncComponent />
-  </Suspense>,
-);
-```
-
-### 2. Enzyme Compatibility Layer
-
-```diff
-- import { shallow } from 'enzyme';
-+ import { shallow } from 'shallowly'; // Same API!
-```
-
-### 3. Visual Debugging
-
-```jsx
-console.log(wrapper.textWithProps());
-console.log(wrapper.textWithPropsInline());
-console.log(wrapper.textInline());
-// Outputs:
-// <DataFetching isLoading={true}>
-// <Spinner />
-// </DataFetching>
-// <DataFetching isLoading={true}><Spinner /></DataFetching>
-// <DataFetching><Spinner /></DataFetching>
-```
-
-### 4. TypeScript Native
-
-```tsx
-const wrapper = shallow<Props>(<User id={123} />);
-wrapper.prop('id'); // Type-safe: number
-```
-
-## 📦 Quick Start
-
-### Install:
-
-```bash
-npm install shallowly --save-dev
-```
-
-### Write tests:
-
-```jsx
+import React from 'react';
 import { shallow } from 'shallowly';
-import vi from 'vitest';
+import { expect, test, vi } from 'vitest';
 
-const MyComponent = ({ name, age, onClick }) => (
-  <div className="container">
-    <h1>Hello {name}</h1>
-    <p>You are {age} years old</p>
-    <button onClick={onClick}>Click me</button>
-  </div>
-);
+function Child() {
+  throw new Error('This child must not render in the parent unit test');
+}
 
-describe('🐛 MyComponent', () => {
-  it('🧪 default', () => {
-    expect.hasAssertions();
-    //☣️ Arrange (всякие моки)
-    const onClickSpy = vi.fn();
+function Parent({ label, onSave }) {
+  return (
+    <section>
+      <Child label={label} onSave={onSave} />
+    </section>
+  );
+}
 
-    //🔥 Act
-    const wrapper = shallow(<MyComponent name="John" age={30} onClick={onClickSpy} />);
+test('passes the label and save callback to Child', () => {
+  const onSave = vi.fn();
+  const wrapper = shallow(<Parent label="Save" onSave={onSave} />);
 
-    //❓ Assert
-    expect(wrapper.text()).toMatchSnapshot();
-  });
+  expect(wrapper.textInline()).toBe('<section><Child /></section>');
+  const child = wrapper.find(Child);
+  expect(child.prop('label')).toBe('Save');
 
-  it('🧪 button prop onClick', () => {
-    expect.hasAssertions();
-    //☣️ Arrange (всякие моки)
-    const onClickSpy = vi.fn();
-
-    //🔥 Act
-    const wrapper = shallow(<MyComponent name="John" age={30} onClick={onClickSpy} />);
-
-    //❓ Assert
-    expect(wrapper.find('button').prop('onClick')).toBe(onClickSpy);
-  });
+  const save = child.prop('onSave');
+  if (typeof save !== 'function') throw new Error('Expected onSave callback');
+  save();
+  expect(onSave).toHaveBeenCalledOnce();
 });
 ```
 
-### Snapshot Testing
+Run it with `npx vitest run`. This test inspects the parent output, reads a child's props, and calls a callback directly. It does not mount `Child` or dispatch a DOM event.
 
-```snap
+For a complete example with a mocked data hook, read [Testing component output, props, and callbacks](https://github.com/bad4iz/shallowly/blob/main/docs/testing-component-contracts.md) or run the [example project](https://github.com/bad4iz/shallowly/tree/main/examples/component-contracts).
 
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+## What to test
 
-exports[`🐛 MyComponent > 🧪 default 1`] = `
-"<div>
-  <h1>
-    Hello
-    John
-  </h1>
-  <p>
-    You are
-    30
-     years old
-  </p>
-  <button>
-    Click me
-  </button>
-</div>"
-`;
-```
+- Output structure and conditional elements returned by your component.
+- Props passed to child components, including values from mocked hooks or services.
+- Callbacks passed to children and the application code those callbacks call.
 
-## ⚡ Performance Comparison
+**Mock hooks and context used by the component under test.** Shallowly calls a function component directly; it does not provide React's hook dispatcher, manage state updates, run effects, or propagate context. A Suspense element can be inspected as output, but Shallowly does not resolve suspended work or render its fallback. Use integration tests to verify those React behaviors and DOM interactions.
 
-| Operation                | Shallowly 🚀 |                                         Enzyme | React Testing Library |
-| ------------------------ | -----------: | ---------------------------------------------: | --------------------: |
-| **Basic component**      |      12ms ⚡ | 🔚💀 It is no longer supported or operational. |    85ms (7.1x slower) |
-| **100 components**       |     650ms ⚡ | 🔚💀 It is no longer supported or operational. |  4500ms (6.9x slower) |
-| **Hook-heavy component** |      18ms ⚡ | 🔚💀 It is no longer supported or operational. |                 210ms |
-| **Tree traversal**       |       8ms ⚡ | 🔚💀 It is no longer supported or operational. |                 150ms |
+## API at a glance
 
-**Key takeaways:**
+| Method                                     | Behavior                                                                                               |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `shallow(element)`                         | Calls the root component and wraps its output. No options argument.                                    |
+| `find(Component)`                          | Finds elements by function or class identity without rendering them.                                   |
+| `find('Child')`, `find('button')`          | Finds by component name or host tag.                                                                   |
+| `find('.save')`, `find('#save')`           | Finds host elements by a single class or ID. Arbitrary CSS selectors are not supported.                |
+| `props()`, `prop(name)`                    | Reads the input props on the root wrapper, or the matched element's props after a single-match `find`. |
+| `exists()`                                 | Checks whether a search has at least one match.                                                        |
+| `text()`, `textInline()`                   | Serializes output structure **including tags**, without props, in multiple lines or one line.          |
+| `textWithProps()`, `textWithPropsInline()` | Serializes output structure with props for debugging and snapshots.                                    |
 
-- 🏎️ Enzyme 🔚💀 It is no longer supported or operational.
-- ⚡ **7x faster** than React Testing Library
-- 🧠 **40% less memory usage** compared to Enzyme
-- 🌳 **Zero DOM** - pure React reconciliation
+If `find` matches zero or multiple elements, `props()` returns `{}` and `prop(name)` returns `undefined`. There is no `length` or `at()` API; use a selector that identifies a single element when reading props. TypeScript declarations are included: `shallow` has no generic type parameter, and prop values are not inferred from your component's props. Check values before using them.
 
-## 🛠 Perfect For
+See the [English API reference](https://github.com/bad4iz/shallowly/blob/main/docs/index.md) or [справочник на русском](https://github.com/bad4iz/shallowly/blob/main/docs/index.ru.md) for examples and limits.
 
-- ✅ Unit testing React components
-- ✅ Migrating from Enzyme
-- ✅ Testing complex hooks/context flows
-- ✅ CI pipelines (fast execution)
+## Moving Enzyme shallow tests
 
-## 🚫 What Shallowly Is NOT For:
+Shallowly provides an **Enzyme-like subset**, not a drop-in replacement. Tests that inspect child props with `shallow`, `find`, and `prop` may need only an import change; check the behavior below before migrating a suite.
 
-- ❌ End-to-end testing (use Cypress/Playwright)
-- ❌ Full integration testing (use RTL)
-- ❌ Visual regression testing (use Storybook/Chromatic)
+| Existing test pattern                                | Shallowly approach                                                               |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Inspect child props with `find(Child).prop('value')` | Supported when the search matches exactly one element.                           |
+| Read output with `.text()`                           | Returns a serialized tree with tags, not Enzyme's plain text content.            |
+| Update with `.setProps()`                            | Create a new `shallow(<Component ... />)` wrapper for each input.                |
+| Trigger `.simulate('click')`                         | Read the callback prop and invoke it directly with the expected arguments.       |
+| Select with `.at()` or count `.length`               | Not implemented. Use a unique simple selector for a prop assertion.              |
+| Use complex CSS selectors                            | Replace with a supported name, tag, class, or ID selector.                       |
+| Test hook state, context, or lifecycle updates       | Mock dependencies for the unit test; verify React behavior in integration tests. |
 
-## 📊 Unit Testing Pyramid
+See the [migration example](https://github.com/bad4iz/shallowly/blob/main/docs/index.md#migrating-from-enzyme).
 
-```terminal
-pie
-    title Test Distribution
-    "Unit (Shallowly)" : 70
-    "Integration" : 20
-    "E2E" : 10
-```
+## Performance
 
-📚 [English Documentation](/docs/index.md) | 🇷🇺 [Документация на русском](/docs/index.ru.md) | 🐞 [Report Issues](https://github.com/bad4iz/shallowly/issues)
+The project's existing performance claims are **2x quicker render cycles than Enzyme**, **7x faster than React Testing Library**, and **40% less memory usage compared to Enzyme**. The existing timing comparison is retained below:
 
-"Saved us 300+ lines of test boilerplate!" - @bad4iz
+| Operation            | Shallowly | React Testing Library |
+| -------------------- | --------: | --------------------: |
+| Basic component      |      12ms |    85ms (7.1x slower) |
+| 100 components       |     650ms |  4500ms (6.9x slower) |
+| Hook-heavy component |      18ms |                 210ms |
+| Tree traversal       |       8ms |                 150ms |
+
+A reproducible benchmark suite with scenarios, library versions, runtime measurements, and memory measurements is tracked separately in [issue #24](https://github.com/bad4iz/shallowly/issues/24). The figures above have not been revalidated by that suite. Shallowly skips DOM setup and child component execution; comparisons must account for the different work performed by each tool.
+
+## Documentation and contributing
+
+- [English documentation](https://github.com/bad4iz/shallowly/blob/main/docs/index.md) · [Документация на русском](https://github.com/bad4iz/shallowly/blob/main/docs/index.ru.md)
+- [Testing component output, props, and callbacks](https://github.com/bad4iz/shallowly/blob/main/docs/testing-component-contracts.md)
+- [React architecture guide](https://github.com/bad4iz/shallowly/blob/main/docs/react-architecture.md) · [Архитектура React](https://github.com/bad4iz/shallowly/blob/main/docs/react-architecture-ru.md)
+- [Development guide](https://github.com/bad4iz/shallowly/blob/main/docs/dev.en.md) · [Руководство разработки](https://github.com/bad4iz/shallowly/blob/main/docs/dev.ru.md)
+- [Contributing](https://github.com/bad4iz/shallowly/blob/main/docs/CONTRIBUTING.md) · [Report an issue](https://github.com/bad4iz/shallowly/issues)
+
+MIT © [Bad4iz](https://github.com/bad4iz)
