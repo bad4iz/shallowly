@@ -1,0 +1,26 @@
+{
+  "name": "shallowly-component-contracts-example",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Runnable React component contract tests with Shallowly, Vitest, and TypeScript.",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:commonjs": "node smoke.cjs",
+    "typecheck": "tsc --noEmit",
+    "typecheck:strict": "tsc --noEmit --esModuleInterop false --allowSyntheticDefaultImports false"
+  },
+  "dependencies": {
+    "react": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "25.2.3",
+    "@types/react": "19.2.13",
+    "shallowly": "^1.1.0",
+    "typescript": "5.9.3",
+    "vitest": "4.0.18"
+  }
+}

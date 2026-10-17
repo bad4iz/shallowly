@@ -43,3 +43,42 @@ jobs:
         with:
           name: coverage-html
           path: coverage_vitest
+
+  package-consumer:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        react: ['19.0.0', '19.2.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
+            examples/component-contracts/package-lock.json
+      - name: Install and build the library
+        run: |
+          npm ci --legacy-peer-deps
+          npm run build
+      - name: Pack the library
+        id: package
+        run: |
+          filename=$(npm pack --pack-destination "$RUNNER_TEMP" --json | node -pe "JSON.parse(require('fs').readFileSync(0, 'utf8'))[0].filename")
+          echo "archive=$RUNNER_TEMP/$filename" >> "$GITHUB_OUTPUT"
+      - name: Install the example against the packed library
+        working-directory: examples/component-contracts
+        env:
+          PACKAGE_ARCHIVE: ${{ steps.package.outputs.archive }}
+          REACT_VERSION: ${{ matrix.react }}
+        run: |
+          npm ci
+          npm install --save-dev "$PACKAGE_ARCHIVE" "react@$REACT_VERSION"
+      - name: Verify examples and generated declarations
+        working-directory: examples/component-contracts
+        run: |
+          npm test
+          npm run test:commonjs
+          npm run typecheck
+          npm run typecheck:strict

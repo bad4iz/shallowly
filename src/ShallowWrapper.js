@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { renderToInlineString, renderToString } from './renderUtils/renderToString';
 import { renderWithProps, renderWithPropsInline } from './renderUtils/renderWithProps';
