@@ -14,7 +14,7 @@ export class ShallowWrapper {
   /**
    * Creates new shallow wrapper instance.
    *
-   * @param {React.ReactElement|Array<React.ReactNode>} component - Root element to wrap.
+   * @param {React.ReactNode} component - Root element to wrap.
    * @param {boolean} [shouldRender] - Whether to execute render immediately.
    */
   constructor(component, shouldRender = true) {
