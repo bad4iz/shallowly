@@ -26,4 +26,10 @@ assert.equal(wrapper.find(Child).exists(), true);
 wrapper.find(Child).prop('onSave')();
 assert.equal(saves, 1);
 assert.equal(wrapper.find('button').exists(), false);
+
+for (const node of ['Loading', '', 0, 42, 42n, null, undefined, false, true]) {
+  const scalarWrapper = shallow(node);
+  assert.equal(scalarWrapper.render(), node);
+  assert.equal(scalarWrapper.textInline(), String(node));
+}
 console.log(`CommonJS package entry works with React ${React.version}`);

@@ -1,6 +1,6 @@
 {
   "name": "shallowly",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Shallow rendering for isolated React component tests. Inspect component output, child props, and callbacks with an Enzyme-like API.",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
